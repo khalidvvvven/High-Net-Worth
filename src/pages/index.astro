@@ -1,0 +1,1000 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Seal from '../components/Seal.astro';
+import Icon from '../components/Icon.astro';
+import CredentialStrip from '../components/CredentialStrip.astro';
+import PracticeIndex from '../components/PracticeIndex.astro';
+import RecognitionTable from '../components/RecognitionTable.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import LocationBand from '../components/LocationBand.astro';
+import { firm, ledger, facts, recognitionNote } from '../content/site';
+
+import heroPortrait from '../assets/images/helen-portrait-hero.jpg';
+import deskPortrait from '../assets/images/helen-portrait-desk.jpg';
+import standingPortrait from '../assets/images/helen-portrait-standing.jpg';
+import aamlLogo from '../assets/images/aaml-logo-ink.png';
+---
+
+<Base
+  title="Helen Popich Harris, APLC | Divorce & Family Law Attorney, Lafayette, Louisiana"
+  description="Helen Popich Harris is a Board Certified Family Law Specialist and AAML Fellow in Lafayette, Louisiana, representing clients in divorce, community property partitions and high-value marital estates."
+  path="/"
+>
+  <!-- Hero -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow" data-hero-item>Family Law · Lafayette, Louisiana</p>
+        <h1 id="hero-title" class="hero__title" data-hero-item>
+          Experience matters when the <em class="accent-italic">financial stakes</em> are significant.
+        </h1>
+        <p class="hero__lead" data-hero-item>
+          Helen Popich Harris is a Board Certified Family Law Specialist and a Fellow of the American Academy of
+          Matrimonial Lawyers, representing clients in divorce, community property partitions and financially
+          complex marital estates.
+        </p>
+        <div class="hero__actions" data-hero-item>
+          <a class="btn" href="/contact#inquiry">Request a Consultation <Icon name="arrow" class="btn__arrow" /></a>
+          <a class="link-arrow" href="/practice-areas">Practice Areas <Icon name="arrow" size={16} /></a>
+        </div>
+        <p class="hero__call" data-hero-item>
+          <span>Or call the office</span>
+          <a href={firm.phone.href}>{firm.phone.display}</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="hero__visual">
+      <figure class="hero__media" data-hero-media>
+        <Picture
+          src={heroPortrait}
+          alt="Helen Popich Harris, Board Certified Family Law Specialist"
+          widths={[420, 640, 860, 1152]}
+          sizes="(min-width: 900px) 46vw, 100vw"
+          formats={['avif', 'webp']}
+          pictureAttributes={{ class: 'media-fill' }}
+          loading="eager"
+          fetchpriority="high"
+          class="hero__img"
+        />
+      </figure>
+      <div class="hero__ribbon" data-hero-ribbon aria-hidden="true">
+        <span class="hero__ribbon-text">Lafayette · Louisiana</span>
+      </div>
+      <div class="hero__seal" data-hero-seal>
+        <Seal id="hero-seal" />
+      </div>
+    </div>
+    <span class="hero__sentinel" data-action-sentinel aria-hidden="true"></span>
+  </section>
+
+  <CredentialStrip />
+
+  <!-- Introduction -->
+  <section class="section intro" aria-labelledby="intro-title">
+    <div class="container">
+      <div class="grid-12 intro__grid">
+        <figure class="intro__figure" data-settle data-reveal>
+          <div class="intro__frame">
+            <Picture
+              src={deskPortrait}
+              alt="Helen Popich Harris seated at her desk"
+              widths={[400, 640, 900]}
+              sizes="(min-width: 900px) 38vw, 92vw"
+              formats={['avif', 'webp']}
+          pictureAttributes={{ class: 'media-fill' }}
+              class="intro__img"
+            />
+          </div>
+          <figcaption class="caption">
+            <span>Helen Popich Harris</span>
+            <span>Attorney at Law</span>
+          </figcaption>
+        </figure>
+
+        <div class="intro__text">
+          <div class="intro__head" data-reveal>
+            <p class="eyebrow">The Practice</p>
+            <h2 id="intro-title" class="h2">Experienced counsel. <em class="accent-italic">Personal attention.</em></h2>
+          </div>
+          <p class="lead" data-reveal>
+            Clients of this office work directly with Helen Popich Harris, from the first conversation through the
+            resolution of their matter.
+          </p>
+          <div class="prose intro__prose" data-reveal>
+            <p>
+              The practice is deliberately small. Rather than passing a matter between associates, Helen is personally
+              involved at every stage: assessing the issues, developing the strategy and representing her clients in
+              negotiation and in court.
+            </p>
+            <p>
+              That continuity matters most when the questions are complex. A divorce involving a business, significant
+              investments or substantial retirement assets is best handled by an attorney who knows every detail of
+              the case.
+            </p>
+          </div>
+
+          <dl class="intro__facts">
+            <div data-reveal>
+              <dt class="numeral">1991</dt>
+              <dd>Admitted to the Louisiana Bar</dd>
+            </div>
+            <div data-reveal>
+              <dt>Board Certified</dt>
+              <dd>Family Law Specialist</dd>
+            </div>
+            <div data-reveal>
+              <dt>One attorney</dt>
+              <dd>Personally involved in every matter</dd>
+            </div>
+          </dl>
+
+          <a class="link-arrow" href="/about" data-reveal>Meet Helen <Icon name="arrow" size={16} /></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Practice areas -->
+  <section class="section section--raised practice" aria-labelledby="practice-title">
+    <div class="container grid-12">
+      <div class="practice__aside">
+        <div class="practice__sticky" data-reveal>
+          <p class="eyebrow">Areas of Practice</p>
+          <h2 id="practice-title" class="h2">Divorce and its <em class="accent-italic">financial consequences.</em></h2>
+          <p class="practice__intro muted">
+            Helen’s practice is concentrated on divorce and the financial matters that accompany it, particularly when
+            the marital estate is substantial or complex.
+          </p>
+          <a class="link-arrow" href="/practice-areas">All practice areas <Icon name="arrow" size={16} /></a>
+        </div>
+      </div>
+      <div class="practice__list">
+        <PracticeIndex />
+      </div>
+    </div>
+  </section>
+
+  <!-- Financially complex matters -->
+  <section class="section section--dark finance" aria-labelledby="finance-title">
+    <div class="container grid-12">
+      <div class="finance__copy">
+        <p class="eyebrow" data-reveal>Financially Complex Divorce</p>
+        <h2 id="finance-title" class="h2" data-reveal>
+          When divorce involves <em class="accent-italic">more than the marriage.</em>
+        </h2>
+        <p class="lead finance__lead" data-reveal>
+          In a substantial marital estate, the most consequential questions are often financial.
+        </p>
+        <div class="prose muted" data-reveal>
+          <p>
+            What is community and what is separate? What is a business worth, and who should keep it? How should
+            retirement benefits be divided, and what support is appropriate? Answering these questions well calls for
+            careful legal analysis, coordination with financial professionals and a clear view of long-term
+            consequences.
+          </p>
+        </div>
+        <aside class="finance__note" data-reveal aria-label="Louisiana community property">
+          <div class="stitch stitch--gold" role="presentation"></div>
+          <p>
+            Louisiana is a community property state. Property acquired during the marriage is presumed to belong to the
+            community, which makes classification, valuation and reimbursement claims central to many divorces.
+          </p>
+          <p class="finance__lecture">
+            Helen has lectured to the Louisiana Society of Certified Public Accountants on reimbursement claims and on
+            the accountant’s contribution in a divorce case.
+          </p>
+        </aside>
+        <a class="btn btn--light finance__cta" href="/contact#inquiry" data-reveal>
+          Discuss Your Matter <Icon name="arrow" class="btn__arrow" />
+        </a>
+      </div>
+
+      <div class="finance__ledger">
+        <div class="ledger" role="group" aria-labelledby="ledger-title">
+          <div class="ledger__head" data-reveal>
+            <p id="ledger-title" class="label">Matters commonly involved</p>
+            <p class="label ledger__head-ref" aria-hidden="true">Schedule</p>
+          </div>
+          <ol role="list" class="ledger__list">
+            {
+              ledger.map((item) => (
+                <li class="ledger__row" data-reveal>
+                  <span class="ledger__num numeral" aria-hidden="true">
+                    {item.numeral}.
+                  </span>
+                  <div>
+                    <h3 class="ledger__title">{item.title}</h3>
+                    <p class="ledger__detail">{item.detail}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Helen -->
+  <section class="section about" aria-labelledby="about-title">
+    <div class="container grid-12">
+      <div class="about__copy">
+        <p class="eyebrow" data-reveal>About Helen</p>
+        <h2 id="about-title" class="h2" data-reveal>
+          A specialist’s depth, <em class="accent-italic">with a personal practice.</em>
+        </h2>
+        <p class="lead" data-reveal>
+          Helen Popich Harris is a Board Certified Family Law Specialist and a Fellow of the American Academy of
+          Matrimonial Lawyers.
+        </p>
+        <div class="prose" data-reveal>
+          <p>
+            Admitted to the Louisiana Bar in 1991, she has built her Lafayette practice around divorce and the division
+            of property, with particular attention to matters involving substantial assets.
+          </p>
+          <p>
+            She is an AAML Certified Arbitrator and has taught attorneys and accountants on subjects ranging from
+            reimbursement claims to ethics in family law.
+          </p>
+        </div>
+        <dl class="facts" data-reveal>
+          {
+            facts.slice(0, 4).map((f) => (
+              <div class="facts__row">
+                <dt>{f.term}</dt>
+                <dd>{f.detail}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <a class="btn btn--ghost" href="/about" data-reveal>About Helen <Icon name="arrow" class="btn__arrow" /></a>
+      </div>
+
+      <figure class="about__figure" data-reveal data-settle>
+        <div class="about__frame">
+          <Picture
+            src={standingPortrait}
+            alt="Helen Popich Harris standing in her office"
+            widths={[400, 640, 842]}
+            sizes="(min-width: 900px) 36vw, 92vw"
+            formats={['avif', 'webp']}
+          pictureAttributes={{ class: 'media-fill' }}
+            class="about__img"
+          />
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Recognition -->
+  <section class="section section--sunk recognition-section" aria-labelledby="recognition-title">
+    <div class="container grid-12">
+      <div class="recognition-section__aside" data-reveal>
+        <p class="eyebrow">Recognition</p>
+        <h2 id="recognition-title" class="h2">Recognized by <em class="accent-italic">the profession.</em></h2>
+        <div class="recognition-section__marks">
+          <div class="recognition-section__seal">
+            <Seal id="recognition-seal" variant="outline" />
+          </div>
+          <img
+            src={aamlLogo.src}
+            width="180"
+            height={Math.round((180 * aamlLogo.height) / aamlLogo.width)}
+            alt="American Academy of Matrimonial Lawyers"
+            loading="lazy"
+            decoding="async"
+            class="recognition-section__aaml"
+          />
+        </div>
+        <p class="recognition-section__note">{recognitionNote}</p>
+      </div>
+      <div class="recognition-section__table">
+        <RecognitionTable />
+      </div>
+    </div>
+  </section>
+
+  <!-- Lafayette -->
+  <LocationBand id="home-location" />
+
+  <!-- Contact -->
+  <section class="section section--raised contact" aria-labelledby="contact-title">
+    <div class="container grid-12">
+      <div class="contact__copy">
+        <p class="eyebrow" data-reveal>Contact</p>
+        <h2 id="contact-title" class="h2" data-reveal>Start with a <em class="accent-italic">private conversation.</em></h2>
+        <p class="contact__intro" data-reveal>
+          An initial consultation is an opportunity to describe your circumstances, ask questions and understand your
+          options before making any decisions.
+        </p>
+        <div class="contact__direct" data-reveal>
+          <a class="contact__phone" href={firm.phone.href}>
+            <span class="label">Call the office</span>
+            <span class="contact__number">{firm.phone.display}</span>
+          </a>
+          <p class="contact__meta">Fax {firm.fax.display}</p>
+        </div>
+        <p class="contact__or" data-reveal>Or send a brief inquiry, and the office will contact you.</p>
+      </div>
+      <div class="contact__form" data-reveal>
+        <ContactPanel id="home-inquiry" />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* ---------------- Hero ---------------- */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: clamp(620px, calc(100svh - var(--header-h) - 5rem), 860px);
+  }
+  .hero__inner {
+    position: relative;
+    z-index: 2;
+  }
+  .hero__copy {
+    width: min(100%, 37.5rem);
+    padding-block: clamp(2.5rem, 1rem + 4vw, 5rem) clamp(3rem, 1rem + 5vw, 6rem);
+  }
+  .hero__title {
+    margin-top: 1.75rem;
+    font-size: clamp(2.6rem, 1.15rem + 4.1vw, 5.15rem);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    font-weight: 500;
+  }
+  .hero__title em {
+    font-weight: 450;
+  }
+  .hero__lead {
+    margin-top: 1.75rem;
+    max-width: 34rem;
+    font-size: clamp(1.05rem, 1rem + 0.25vw, 1.2rem);
+    line-height: 1.65;
+    color: var(--ink-700);
+  }
+  .hero__actions {
+    margin-top: 2.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 2rem;
+  }
+  .hero__call {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.25rem 0.75rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+  }
+  .hero__call a {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    color: var(--ink-900);
+    text-decoration: none;
+    font-feature-settings: 'lnum' 1;
+    border-bottom: 1px solid var(--rule-strong);
+    line-height: 1.3;
+  }
+  .hero__call a:hover {
+    color: var(--oxblood-700);
+    border-color: currentColor;
+  }
+
+  .hero__visual {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 54%;
+    right: 0;
+  }
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    margin: 0;
+    overflow: hidden;
+    background: var(--oxblood-900);
+  }
+  .hero__media :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 22%;
+    will-change: transform;
+  }
+  .hero__media::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(44, 11, 16, 0.18), rgba(44, 11, 16, 0) 22%);
+    pointer-events: none;
+  }
+  .hero__ribbon {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -2rem;
+    width: 4rem;
+    z-index: 2;
+    background: var(--oxblood-600);
+    display: flex;
+    justify-content: center;
+  }
+  .hero__ribbon::before,
+  .hero__ribbon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-image: radial-gradient(circle at 1.5px 1.5px, var(--gold-300) 0.85px, transparent 1.15px);
+    background-size: 3px 7px;
+    background-repeat: repeat-y;
+    opacity: 0.75;
+  }
+  .hero__ribbon::before {
+    left: 7px;
+  }
+  .hero__ribbon::after {
+    right: 7px;
+  }
+  .hero__ribbon-text {
+    position: absolute;
+    top: 2.25rem;
+    writing-mode: vertical-rl;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold-200);
+    white-space: nowrap;
+  }
+  .hero__seal {
+    position: absolute;
+    left: -4.75rem;
+    bottom: 11%;
+    width: 9.5rem;
+    z-index: 3;
+    filter: drop-shadow(0 10px 24px rgba(44, 11, 16, 0.28));
+  }
+  .hero__sentinel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+  }
+
+  @media (min-width: 1600px) {
+    .hero__visual {
+      left: 55%;
+    }
+    .hero__copy {
+      width: min(100%, 42rem);
+    }
+  }
+
+  @media (max-width: 1199px) and (min-width: 900px) {
+    .hero__copy {
+      width: calc(52vw - var(--gutter) - 4rem);
+    }
+    .hero__title {
+      font-size: clamp(2.6rem, 0.6rem + 4.2vw, 3.6rem);
+    }
+    .hero__lead {
+      font-size: 1rem;
+    }
+    .hero__visual {
+      left: 52%;
+    }
+    .hero__seal {
+      width: 8rem;
+      left: -4rem;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .hero {
+      min-height: 0;
+    }
+    .hero__visual {
+      position: relative;
+      order: -1;
+      left: auto;
+      height: min(100vw, 32rem);
+    }
+    .hero__media :global(img) {
+      object-position: 50% 18%;
+    }
+    .hero__media::after {
+      background: linear-gradient(180deg, rgba(44, 11, 16, 0) 70%, rgba(44, 11, 16, 0.22));
+    }
+    .hero__ribbon {
+      left: auto;
+      right: calc(var(--gutter) + 1.25rem);
+      width: 2.25rem;
+      bottom: 0;
+    }
+    .hero__ribbon::before {
+      left: 4px;
+    }
+    .hero__ribbon::after {
+      right: 4px;
+    }
+    .hero__ribbon-text {
+      display: none;
+    }
+    .hero__seal {
+      left: auto;
+      right: calc(var(--gutter) + 1.25rem + 1.125rem - 3rem);
+      bottom: -3rem;
+      width: 6rem;
+    }
+    .hero__copy {
+      width: 100%;
+      padding-block: 2.75rem 3.5rem;
+    }
+    .hero__title {
+      margin-top: 1.25rem;
+      font-size: clamp(2.4rem, 1.4rem + 4.4vw, 3.4rem);
+    }
+    .hero__lead {
+      margin-top: 1.25rem;
+    }
+    .hero__actions {
+      margin-top: 1.75rem;
+    }
+    .hero__actions .btn {
+      flex: 1 1 100%;
+    }
+  }
+
+  /* ---------------- Captions ---------------- */
+  .caption {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---------------- Introduction ---------------- */
+  .intro__head {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2.25rem;
+  }
+  .intro__grid {
+    align-items: center;
+  }
+  .intro__figure {
+    grid-column: 1 / span 5;
+  }
+  .intro__frame {
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: var(--ivory-300);
+  }
+  .intro__frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+  }
+  .intro__text {
+    grid-column: 7 / span 6;
+  }
+  .intro__prose {
+    margin-top: 2rem;
+    color: var(--ink-700);
+  }
+  .intro__facts {
+    margin-block: 3rem 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--rule-strong);
+  }
+  .intro__facts > div {
+    padding: 1.4rem 1rem 0 0;
+  }
+  .intro__facts > div + div {
+    padding-left: 1.25rem;
+    border-left: 1px solid var(--rule);
+  }
+  .intro__facts dt {
+    font-family: var(--serif);
+    font-size: clamp(1.3rem, 1.1rem + 0.55vw, 1.6rem);
+    line-height: 1.1;
+    color: var(--oxblood-700);
+    white-space: nowrap;
+  }
+  .intro__facts dt.numeral {
+    font-style: normal;
+    font-feature-settings: 'lnum' 1;
+  }
+  .intro__facts dd {
+    margin-top: 0.4rem;
+    font-size: 0.975rem;
+    line-height: 1.45;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 899px) {
+    .intro__figure,
+    .intro__text {
+      grid-column: 1 / -1;
+    }
+    .intro__figure {
+      width: min(100%, 26rem);
+    }
+    .intro__text {
+      margin-top: 3rem;
+      padding-top: 0;
+    }
+  }
+  @media (max-width: 519px) {
+    .intro__facts {
+      grid-template-columns: 1fr;
+    }
+    .intro__facts > div,
+    .intro__facts > div + div {
+      display: grid;
+      grid-template-columns: 9.5rem 1fr;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .intro__facts dt {
+      font-size: 1.35rem;
+    }
+    .intro__facts dd {
+      margin-top: 0;
+    }
+  }
+
+  /* ---------------- Practice ---------------- */
+  .practice__aside {
+    grid-column: 1 / span 4;
+  }
+  .practice__sticky {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+    display: grid;
+    gap: 1.5rem;
+    justify-items: start;
+  }
+  .practice__intro {
+    max-width: 34ch;
+  }
+  .practice__list {
+    grid-column: 6 / span 7;
+  }
+  @media (max-width: 899px) {
+    .practice__aside,
+    .practice__list {
+      grid-column: 1 / -1;
+    }
+    .practice__sticky {
+      position: static;
+      margin-bottom: 2.5rem;
+    }
+  }
+
+  /* ---------------- Finance ---------------- */
+  .finance {
+    overflow: hidden;
+  }
+  .finance::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 80% at 100% 0%, rgba(148, 41, 58, 0.35), transparent 60%),
+      radial-gradient(80% 60% at 0% 100%, rgba(44, 11, 16, 0.5), transparent 70%);
+    pointer-events: none;
+  }
+  .finance > .container {
+    position: relative;
+  }
+  .finance__copy {
+    grid-column: 1 / span 5;
+    display: grid;
+    gap: 1.6rem;
+    align-content: start;
+    justify-items: start;
+  }
+  .finance__lead {
+    max-width: 30ch;
+  }
+  .finance__note {
+    display: grid;
+    gap: 1rem;
+    max-width: 40rem;
+    font-size: 1.03rem;
+    color: rgba(247, 242, 234, 0.86);
+  }
+  .stitch--gold {
+    background-image: radial-gradient(circle at 1.5px 1.5px, var(--gold-300) 0.9px, transparent 1.2px);
+    width: 100%;
+    opacity: 0.6;
+    margin-bottom: 0.5rem;
+  }
+  .finance__lecture {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.15rem;
+    line-height: 1.5;
+    color: var(--gold-200);
+  }
+  .finance__cta {
+    margin-top: 0.75rem;
+  }
+  .finance__ledger {
+    grid-column: 7 / span 6;
+  }
+  .ledger__head {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1rem;
+    color: var(--gold-300);
+    border-bottom: 3px double rgba(230, 207, 164, 0.55);
+  }
+  .ledger__head-ref {
+    color: rgba(247, 242, 234, 0.55);
+  }
+  .ledger__list {
+    border-bottom: 3px double rgba(230, 207, 164, 0.55);
+  }
+  .ledger__row {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding-block: 1.45rem;
+  }
+  .ledger__row + .ledger__row {
+    border-top: 1px solid rgba(247, 242, 234, 0.13);
+  }
+  .ledger__num {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--gold-300);
+  }
+  .ledger__title {
+    font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.85rem);
+    line-height: 1.15;
+    color: var(--ivory-50);
+  }
+  .ledger__detail {
+    margin-top: 0.45rem;
+    font-size: 1.03rem;
+    line-height: 1.6;
+    color: rgba(247, 242, 234, 0.74);
+    max-width: 48ch;
+  }
+  @media (max-width: 899px) {
+    .finance__copy,
+    .finance__ledger {
+      grid-column: 1 / -1;
+    }
+    .finance__ledger {
+      margin-top: 3.5rem;
+    }
+    .ledger__row {
+      grid-template-columns: 2.25rem 1fr;
+    }
+  }
+
+  /* ---------------- About ---------------- */
+  .about .container {
+    align-items: center;
+  }
+  .about__copy {
+    grid-column: 1 / span 6;
+    display: grid;
+    gap: 1.6rem;
+    justify-items: start;
+  }
+  .about__copy .prose {
+    color: var(--ink-700);
+  }
+  .facts {
+    width: 100%;
+    margin-block: 0.75rem 1rem;
+    border-top: 1px solid var(--rule-strong);
+  }
+  .facts__row {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding-block: 0.95rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .facts dt {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--oxblood-700);
+    padding-top: 0.2rem;
+  }
+  .facts dd {
+    font-size: 1.03rem;
+    line-height: 1.55;
+  }
+  .about__figure {
+    grid-column: 8 / span 5;
+    margin: 0;
+  }
+  .about__frame {
+    position: relative;
+    aspect-ratio: 5 / 6;
+    overflow: hidden;
+    background: var(--ivory-300);
+  }
+  .about__frame :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 25%;
+  }
+  .about__figure {
+    position: relative;
+  }
+  .about__figure::before {
+    content: '';
+    position: absolute;
+    inset: 1.5rem -1.5rem -1.5rem 1.5rem;
+    border: 1px solid rgba(124, 33, 49, 0.35);
+    pointer-events: none;
+  }
+  @media (max-width: 899px) {
+    .about__copy,
+    .about__figure {
+      grid-column: 1 / -1;
+    }
+    .about__figure {
+      order: -1;
+      width: calc(100% - 1.5rem);
+      margin-bottom: 4rem;
+    }
+    .facts__row {
+      grid-template-columns: 7.5rem 1fr;
+      gap: 1rem;
+    }
+  }
+
+  /* ---------------- Recognition ---------------- */
+  .recognition-section__aside {
+    grid-column: 1 / span 4;
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+  }
+  .recognition-section__marks {
+    margin-top: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .recognition-section__seal {
+    width: 7.5rem;
+    flex: none;
+  }
+  .recognition-section__aaml {
+    width: 10rem;
+    height: auto;
+    opacity: 0.85;
+  }
+  .recognition-section__table {
+    grid-column: 6 / span 7;
+  }
+  .recognition-section__note {
+    margin-top: 1rem;
+    max-width: 40ch;
+    font-size: 0.975rem;
+    line-height: 1.6;
+    color: var(--ink-700);
+  }
+  @media (max-width: 899px) {
+    .recognition-section__aside,
+    .recognition-section__table {
+      grid-column: 1 / -1;
+    }
+    .recognition-section__table {
+      margin-top: 2.5rem;
+    }
+    .recognition-section__seal {
+      width: 6rem;
+    }
+    .recognition-section__aaml {
+      width: 8.5rem;
+    }
+  }
+
+  /* ---------------- Contact ---------------- */
+  .contact .container {
+    align-items: start;
+  }
+  .contact__copy {
+    grid-column: 1 / span 5;
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+    padding-top: clamp(0rem, -1rem + 3vw, 2.5rem);
+  }
+  .contact__intro {
+    max-width: 40ch;
+    font-size: 1.0625rem;
+    color: var(--ink-700);
+  }
+  .contact__direct {
+    margin-top: 0.75rem;
+    padding: 1.75rem 0 1.75rem 1.5rem;
+    border-left: 3px solid var(--oxblood-600);
+    background: linear-gradient(90deg, rgba(124, 33, 49, 0.06), rgba(124, 33, 49, 0));
+    display: grid;
+    gap: 0.75rem;
+  }
+  .contact__phone {
+    display: grid;
+    gap: 0.5rem;
+    text-decoration: none;
+    justify-self: start;
+  }
+  .contact__phone .label {
+    color: var(--oxblood-700);
+  }
+  .contact__number {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 1.8rem + 2.4vw, 3.75rem);
+    line-height: 1;
+    font-feature-settings: 'lnum' 1;
+    color: var(--ink-900);
+    transition: color var(--dur-fast) ease;
+  }
+  .contact__phone:hover .contact__number {
+    color: var(--oxblood-700);
+  }
+  .contact__meta {
+    font-size: 0.975rem;
+    color: var(--text-muted);
+    font-feature-settings: 'lnum' 1;
+  }
+  .contact__or {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.2rem;
+    color: var(--ink-700);
+  }
+  .contact__form {
+    grid-column: 7 / span 6;
+  }
+  @media (max-width: 899px) {
+    .contact__copy,
+    .contact__form {
+      grid-column: 1 / -1;
+    }
+    .contact__copy {
+      padding-top: 0;
+    }
+    .contact__form {
+      margin-top: 2.5rem;
+    }
+  }
+</style>

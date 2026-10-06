@@ -1,0 +1,29 @@
+---
+/**
+ * The "portico H" monogram, redrawn as a single-colour vector from the
+ * existing seal: a classical entablature over an H whose crossbar is the
+ * shoulder of a lowercase h, resting on a single plinth.
+ */
+interface Props {
+  class?: string;
+  title?: string;
+}
+const { class: className, title } = Astro.props;
+---
+
+<svg
+  class:list={['monogram', className]}
+  viewBox="0 0 120 120"
+  fill="currentColor"
+  role={title ? 'img' : undefined}
+  aria-hidden={title ? undefined : 'true'}
+  aria-label={title}
+  focusable="false"
+>
+  <rect x="16" y="14" width="88" height="6.5"></rect>
+  <rect x="22" y="24.5" width="76" height="3.2"></rect>
+  <path d="M28 32H52V34.6Q46.4 34.6 45.4 38.4V82.6Q46.4 86.4 52 86.4V89H28V86.4Q33.6 86.4 34.6 82.6V38.4Q33.6 34.6 28 34.6Z"></path>
+  <path d="M68 32H92V34.6Q86.4 34.6 85.4 38.4V82.6Q86.4 86.4 92 86.4V89H68V86.4Q73.6 86.4 74.6 82.6V38.4Q73.6 34.6 68 34.6Z"></path>
+  <path d="M45.4 60C48.6 53.4 54.6 49.6 61.6 49.6C68.6 49.6 73.6 52.8 74.6 57.4V66C73.4 60.2 69.2 55.6 63 55.6C55.6 55.6 49.6 59 45.4 62.6Z"></path>
+  <rect x="20" y="93" width="80" height="6.5"></rect>
+</svg>

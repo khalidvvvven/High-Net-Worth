@@ -1,0 +1,133 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import ContactPanel from '../components/ContactPanel.astro';
+import LocationBand from '../components/LocationBand.astro';
+import { firm } from '../content/site';
+import '../styles/pages.css';
+
+
+const preparation = [
+  'A brief summary of your situation and any approaching deadlines',
+  'Any pleadings or court documents you have filed or received',
+  'A general overview of significant assets, debts and income',
+];
+---
+
+<Base
+  title="Contact the Office"
+  description="Contact Helen Popich Harris, APLC, 321 West Main Street, Suite 2-D, Lafayette, Louisiana. Telephone 337.291.6092."
+  path="/contact"
+>
+  <section class="page-hero contact-hero" aria-labelledby="contact-hero-title">
+    <div class="container">
+      <p class="eyebrow" data-hero-item>Contact the Office</p>
+      <h1 id="contact-hero-title" class="page-hero__title" data-hero-item>
+        Start with a <em class="accent-italic">private conversation.</em>
+      </h1>
+      <p class="lead page-hero__lead" data-hero-item>
+        An initial consultation is an opportunity to describe your circumstances, ask questions and understand your
+        options before making any decisions.
+      </p>
+    </div>
+    <span class="contact-hero__sentinel" data-action-sentinel aria-hidden="true"></span>
+  </section>
+
+  <section class="section section--raised contact-main" aria-label="Contact details and inquiry form">
+    <div class="container grid-12">
+      <div class="office">
+        <div class="office__block" data-reveal>
+          <p class="label office__label">Telephone</p>
+          <a class="office__phone" href={firm.phone.href}>{firm.phone.display}</a>
+          <p class="office__fax">Fax {firm.fax.display}</p>
+        </div>
+        <div class="office__block" data-reveal>
+          <p class="label office__label">Office</p>
+          <address class="office__address">
+            {firm.legalName}<br />
+            {firm.address.street}, <span style="white-space: nowrap">{firm.address.suite}</span><br />
+            {firm.address.city}, {firm.address.region} {firm.address.postalCode}
+          </address>
+          <a class="link-arrow" href={firm.directionsUrl} target="_blank" rel="noopener">
+            Get directions <Icon name="arrow" size={16} /><span class="visually-hidden"> (opens Google Maps in a new tab)</span>
+          </a>
+        </div>
+        <div class="office__block" data-reveal>
+          <p class="label office__label">Preparing for a consultation</p>
+          <ul role="list" class="list-rules office__prep">
+            {preparation.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <div class="inquiry-col" data-reveal>
+        <ContactPanel id="inquiry" headingLevel="h2" />
+      </div>
+    </div>
+  </section>
+
+  <LocationBand id="contact-location" />
+</Base>
+
+<style>
+  .contact-hero__sentinel {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 1px;
+  }
+  .office {
+    grid-column: 1 / span 5;
+    display: grid;
+    gap: 2.75rem;
+    align-content: start;
+  }
+  .office__block {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule-strong);
+  }
+  .office__label {
+    color: var(--oxblood-700);
+    margin-bottom: 0.75rem;
+  }
+  .office__phone {
+    display: inline-block;
+    font-family: var(--serif);
+    font-size: clamp(2.6rem, 1.8rem + 2.6vw, 4rem);
+    line-height: 1;
+    color: var(--ink-900);
+    text-decoration: none;
+    font-feature-settings: 'lnum' 1;
+    transition: color var(--dur-fast) ease;
+  }
+  .office__phone:hover {
+    color: var(--oxblood-700);
+  }
+  .office__fax {
+    margin-top: 0.6rem;
+    color: var(--text-muted);
+    font-feature-settings: 'lnum' 1;
+  }
+  .office__address {
+    font-style: normal;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.45;
+    margin-bottom: 0.75rem;
+  }
+  .office__prep li {
+    font-size: 0.975rem;
+  }
+  .inquiry-col {
+    grid-column: 7 / span 6;
+  }
+  @media (max-width: 899px) {
+    .office,
+    .inquiry-col {
+      grid-column: 1 / -1;
+    }
+    .inquiry-col {
+      margin-top: 3.5rem;
+    }
+  }
+</style>

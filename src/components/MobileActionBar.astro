@@ -1,0 +1,94 @@
+---
+import { firm } from '../content/site';
+import Icon from './Icon.astro';
+---
+
+<div class="action-bar" data-action-bar aria-label="Contact the office" role="region">
+  <a class="action-bar__call" href={firm.phone.href}>
+    <Icon name="phone" size={18} />
+    <span>Call <span class="action-bar__num">{firm.phone.display}</span></span>
+  </a>
+  <a class="action-bar__consult" href="/contact#inquiry">Consultation</a>
+</div>
+
+<style>
+  .action-bar {
+    display: none;
+  }
+  @media (max-width: 899px) {
+    .action-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 40;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      padding-bottom: env(safe-area-inset-bottom);
+      background: var(--oxblood-800);
+      box-shadow: 0 -1px 0 rgba(230, 207, 164, 0.35);
+      transform: translateY(105%);
+      transition: transform 420ms var(--ease-out);
+    }
+    .action-bar.is-visible {
+      transform: translateY(0);
+    }
+    .action-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      min-height: 3.6rem;
+      padding-inline: 1rem;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--ivory-50);
+    }
+    .action-bar__num {
+      font-feature-settings: 'lnum' 1;
+    }
+    .action-bar__consult {
+      background: var(--ivory-50);
+      color: var(--oxblood-800) !important;
+    }
+    .action-bar a:focus-visible {
+      outline: 2px solid var(--gold-200);
+      outline-offset: -4px;
+    }
+  }
+  @media (max-width: 374px) {
+    .action-bar__num {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-action-bar]');
+  const sentinel = document.querySelector<HTMLElement>('[data-action-sentinel]');
+  if (bar) {
+    if (sentinel) {
+      let ticking = false;
+      const update = () => {
+        bar.classList.toggle('is-visible', sentinel.getBoundingClientRect().top < 0);
+        ticking = false;
+      };
+      update();
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            requestAnimationFrame(update);
+            ticking = true;
+          }
+        },
+        { passive: true },
+      );
+    } else {
+      bar.classList.add('is-visible');
+    }
+  }
+</script>

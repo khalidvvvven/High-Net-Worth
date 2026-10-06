@@ -1,0 +1,166 @@
+---
+/**
+ * Inquiry form. Prototype only: validation and the confirmation state run in
+ * the browser and nothing is transmitted. In production this posts to the
+ * WordPress form handler (e.g. Gravity Forms) with the same field names.
+ */
+import Icon from './Icon.astro';
+
+interface Props {
+  id?: string;
+}
+const { id = 'inquiry' } = Astro.props;
+---
+
+<form class="inquiry" id={id} novalidate data-inquiry aria-describedby={`${id}-disclaimer`}>
+  <div class="inquiry__fields" data-inquiry-fields>
+    <div class="field">
+      <label for={`${id}-name`}>Full name</label>
+      <input id={`${id}-name`} name="name" type="text" autocomplete="name" required aria-describedby={`${id}-name-error`} />
+      <p class="field__error" id={`${id}-name-error`} aria-live="polite"></p>
+    </div>
+    <div class="inquiry__row">
+      <div class="field">
+        <label for={`${id}-email`}>Email</label>
+        <input id={`${id}-email`} name="email" type="email" autocomplete="email" required aria-describedby={`${id}-email-error`} />
+        <p class="field__error" id={`${id}-email-error`} aria-live="polite"></p>
+      </div>
+      <div class="field">
+        <label for={`${id}-phone`}>Phone <span class="optional">(optional)</span></label>
+        <input id={`${id}-phone`} name="phone" type="tel" autocomplete="tel" inputmode="tel" />
+      </div>
+    </div>
+    <div class="field">
+      <label for={`${id}-message`}>How can the office assist you?</label>
+      <textarea id={`${id}-message`} name="message" rows="4" required aria-describedby={`${id}-message-hint ${id}-message-error`}></textarea>
+      <p class="inquiry__hint" id={`${id}-message-hint`}>A brief, general description is enough. Please do not include confidential details.</p>
+      <p class="field__error" id={`${id}-message-error`} aria-live="polite"></p>
+    </div>
+
+    <div class="inquiry__submit">
+      <button class="btn" type="submit">
+        Send Inquiry <Icon name="arrow" class="btn__arrow" />
+      </button>
+    </div>
+  </div>
+
+  <div class="inquiry__done" data-inquiry-done hidden tabindex="-1">
+    <p class="inquiry__done-title">Thank you.</p>
+    <p>Your inquiry has been noted. The office will contact you to arrange a time to talk.</p>
+  </div>
+
+  <p class="inquiry__disclaimer" id={`${id}-disclaimer`}>
+    Submitting this form does not establish an attorney–client relationship. Please do not send confidential
+    information until the office has confirmed that it can represent you.
+  </p>
+</form>
+
+<style>
+  .inquiry {
+    display: grid;
+    gap: 2rem;
+  }
+  .inquiry__fields {
+    display: grid;
+    gap: 1.75rem;
+  }
+  .inquiry__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+  }
+  .inquiry__hint {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+  .inquiry__submit {
+    padding-top: 0.25rem;
+  }
+  .inquiry__disclaimer {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--text-muted);
+  }
+  .inquiry__done {
+    padding: 2rem 0;
+    border-top: 1px solid var(--oxblood-600);
+  }
+  .inquiry__done:focus {
+    outline: none;
+  }
+  .inquiry__done-title {
+    font-family: var(--serif);
+    font-size: 2rem;
+    line-height: 1.1;
+    color: var(--oxblood-700);
+    margin-bottom: 0.5rem;
+  }
+  @media (max-width: 639px) {
+    .inquiry__row {
+      grid-template-columns: 1fr;
+    }
+    .inquiry__submit .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  document.querySelectorAll<HTMLFormElement>('[data-inquiry]').forEach((form) => {
+    const fields = form.querySelector<HTMLElement>('[data-inquiry-fields]');
+    const done = form.querySelector<HTMLElement>('[data-inquiry-done]');
+
+    const setError = (input: HTMLInputElement | HTMLTextAreaElement, message: string) => {
+      const error = form.querySelector<HTMLElement>(`#${input.id}-error`);
+      input.setAttribute('aria-invalid', message ? 'true' : 'false');
+      if (error) error.textContent = message;
+    };
+
+    const validate = (input: HTMLInputElement | HTMLTextAreaElement) => {
+      const value = input.value.trim();
+      if (input.name === 'name' && !value) return 'Please enter your name.';
+      if (input.name === 'email') {
+        if (!value) return 'Please enter your email address.';
+        if (!emailPattern.test(value)) return 'Please enter a valid email address, such as name@example.com.';
+      }
+      if (input.name === 'message' && !value) return 'Please tell us briefly how the office can help.';
+      return '';
+    };
+
+    const required = Array.from(
+      form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[required], textarea[required]'),
+    );
+
+    required.forEach((input) => {
+      input.addEventListener('blur', () => {
+        if (input.value.trim() || input.getAttribute('aria-invalid') === 'true') setError(input, validate(input));
+      });
+      input.addEventListener('input', () => {
+        if (input.getAttribute('aria-invalid') === 'true') setError(input, validate(input));
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      let firstInvalid: HTMLInputElement | HTMLTextAreaElement | null = null;
+      required.forEach((input) => {
+        const message = validate(input);
+        setError(input, message);
+        if (message && !firstInvalid) firstInvalid = input;
+      });
+      if (firstInvalid) {
+        (firstInvalid as HTMLElement).focus();
+        return;
+      }
+      if (fields && done) {
+        fields.hidden = true;
+        done.hidden = false;
+        done.focus();
+      }
+    });
+  });
+</script>

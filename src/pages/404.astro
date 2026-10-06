@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import '../styles/pages.css';
+---
+
+<Base title="Page Not Found" description="The page you requested could not be found." path="/404">
+  <section class="page-hero">
+    <div class="container">
+      <p class="eyebrow">Page not found</p>
+      <h1 class="page-hero__title">This page <em class="accent-italic">could not be found.</em></h1>
+      <p class="lead page-hero__lead">The link may be out of date. You can return home or contact the office directly.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:center;margin-top:2.5rem">
+        <a class="btn" href="/">Return Home <Icon name="arrow" class="btn__arrow" /></a>
+        <a class="link-arrow" href="/contact">Contact the office <Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </section>
+</Base>

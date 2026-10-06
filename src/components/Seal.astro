@@ -1,0 +1,100 @@
+---
+/**
+ * The Board Certified seal, modernised: flat colour, hairline rings and the
+ * original legend set on circular paths. Decorative by default; the same
+ * information is always present in text nearby.
+ */
+interface Props {
+  id: string;
+  variant?: 'oxblood' | 'outline' | 'line-light';
+  class?: string;
+}
+const { id, variant = 'oxblood', class: className } = Astro.props;
+const top = `${id}-top`;
+const bottom = `${id}-bottom`;
+---
+
+<svg
+  class:list={['seal', `seal--${variant}`, className]}
+  viewBox="0 0 240 240"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <path id={top} d="M120 208.5A88.5 88.5 0 1 1 120 31.5A88.5 88.5 0 1 1 120 208.5"></path>
+    <path id={bottom} d="M120 22.5A97.5 97.5 0 1 0 120 217.5A97.5 97.5 0 1 0 120 22.5"></path>
+  </defs>
+  <circle class="seal__disc" cx="120" cy="120" r="118"></circle>
+  <circle class="seal__line" cx="120" cy="120" r="108" fill="none" stroke-width="1.1"></circle>
+  <circle
+    class="seal__line"
+    cx="120"
+    cy="120"
+    r="81"
+    fill="none"
+    stroke-width="1.7"
+    stroke-dasharray="0 4.1"
+    stroke-linecap="round"></circle>
+  <g class="seal__type" font-family="EB Garamond, Georgia, serif" font-weight="600" font-size="12.6">
+    <text letter-spacing="3.4"><textPath href={`#${top}`} startOffset="50%" text-anchor="middle">HELEN POPICH HARRIS</textPath></text>
+    <text letter-spacing="1.25"><textPath href={`#${bottom}`} startOffset="50%" text-anchor="middle">BOARD CERTIFIED FAMILY LAW SPECIALIST</textPath></text>
+  </g>
+  <circle class="seal__dot" cx="27" cy="120" r="1.9" transform="rotate(13.4 120 120)"></circle>
+  <circle class="seal__dot" cx="213" cy="120" r="1.9" transform="rotate(-13.4 120 120)"></circle>
+  <g class="seal__mono" transform="translate(79 79) scale(0.683)">
+    <rect x="16" y="14" width="88" height="6.5"></rect>
+    <rect x="22" y="24.5" width="76" height="3.2"></rect>
+    <path d="M28 32H52V34.6Q46.4 34.6 45.4 38.4V82.6Q46.4 86.4 52 86.4V89H28V86.4Q33.6 86.4 34.6 82.6V38.4Q33.6 34.6 28 34.6Z"></path>
+    <path d="M68 32H92V34.6Q86.4 34.6 85.4 38.4V82.6Q86.4 86.4 92 86.4V89H68V86.4Q73.6 86.4 74.6 82.6V38.4Q73.6 34.6 68 34.6Z"></path>
+    <path d="M45.4 60C48.6 53.4 54.6 49.6 61.6 49.6C68.6 49.6 73.6 52.8 74.6 57.4V66C73.4 60.2 69.2 55.6 63 55.6C55.6 55.6 49.6 59 45.4 62.6Z"></path>
+    <rect x="20" y="93" width="80" height="6.5"></rect>
+  </g>
+</svg>
+
+<style>
+  .seal {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  .seal--oxblood .seal__disc {
+    fill: var(--oxblood-600);
+  }
+  .seal--oxblood .seal__line {
+    stroke: var(--gold-300);
+  }
+  .seal--oxblood .seal__type,
+  .seal--oxblood .seal__dot,
+  .seal--oxblood .seal__mono {
+    fill: var(--gold-300);
+  }
+
+  .seal--outline .seal__disc {
+    fill: none;
+    stroke: var(--oxblood-600);
+    stroke-width: 1;
+  }
+  .seal--outline .seal__line {
+    stroke: var(--gold-500);
+  }
+  .seal--outline .seal__type,
+  .seal--outline .seal__dot,
+  .seal--outline .seal__mono {
+    fill: var(--oxblood-600);
+  }
+
+  .seal--line-light .seal__disc {
+    fill: none;
+    stroke: rgba(230, 207, 164, 0.5);
+    stroke-width: 1;
+  }
+  .seal--line-light .seal__line {
+    stroke: rgba(230, 207, 164, 0.7);
+  }
+  .seal--line-light .seal__type,
+  .seal--line-light .seal__dot,
+  .seal--line-light .seal__mono {
+    fill: var(--gold-200);
+  }
+</style>

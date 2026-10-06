@@ -1,0 +1,87 @@
+---
+import { firm } from '../content/site';
+import Seal from './Seal.astro';
+import Icon from './Icon.astro';
+
+interface Props {
+  id?: string;
+}
+const { id = 'cta' } = Astro.props;
+---
+
+<section class="cta-band section--dark" aria-labelledby={`${id}-title`}>
+  <div class="container cta-band__inner">
+    <div class="cta-band__copy" data-reveal>
+      <p class="eyebrow">Contact the Office</p>
+      <h2 id={`${id}-title`} class="h2">Start with a <em class="accent-italic">private conversation.</em></h2>
+      <p class="cta-band__text">
+        Call the office or send a brief inquiry to arrange a consultation with Helen Popich Harris.
+      </p>
+      <div class="cta-band__actions">
+        <a class="btn btn--light" href="/contact#inquiry">Request a Consultation <Icon name="arrow" class="btn__arrow" /></a>
+        <a class="btn btn--ghost-light" href={firm.phone.href}><Icon name="phone" size={18} /> {firm.phone.display}</a>
+      </div>
+    </div>
+    <div class="cta-band__seal" aria-hidden="true">
+      <Seal id={`${id}-seal`} variant="line-light" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta-band {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4.5rem, 3rem + 5vw, 8rem);
+    background: var(--oxblood-800);
+  }
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(90% 120% at 100% 50%, rgba(148, 41, 58, 0.4), transparent 60%);
+    pointer-events: none;
+  }
+  .cta-band__inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 3rem;
+  }
+  .cta-band__copy {
+    display: grid;
+    gap: 1.5rem;
+    justify-items: start;
+    max-width: 44rem;
+  }
+  .cta-band__text {
+    color: rgba(247, 242, 234, 0.8);
+    max-width: 46ch;
+  }
+  .cta-band__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .cta-band__seal {
+    width: clamp(10rem, 6rem + 10vw, 16rem);
+    opacity: 0.9;
+  }
+  @media (max-width: 767px) {
+    .cta-band__inner {
+      grid-template-columns: 1fr;
+    }
+    .cta-band__seal {
+      position: absolute;
+      right: -3rem;
+      top: -2.5rem;
+      width: 9rem;
+      opacity: 0.25;
+    }
+    .cta-band__actions .btn {
+      flex: 1 1 100%;
+    }
+  }
+</style>

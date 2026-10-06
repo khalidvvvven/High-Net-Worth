@@ -1,0 +1,695 @@
+/* ==========================================================================
+   Helen Popich Harris, APLC: design system
+   An evolution of the existing letterhead: oxblood ribbon, ivory stock,
+   restrained antique gold and Garamond lettering.
+   ========================================================================== */
+
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond-latin-wght-normal.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'EB Garamond';
+  src: url('/fonts/eb-garamond-latin-wght-italic.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-sans-latin-wght-normal.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metric-matched fallbacks keep layout stable while web fonts load. */
+@font-face {
+  font-family: 'Garamond Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 92%;
+  ascent-override: 98%;
+}
+@font-face {
+  font-family: 'Sans Fallback';
+  src: local('Arial'), local('Helvetica');
+  size-adjust: 100%;
+}
+
+:root {
+  /* Color: ivory stock */
+  --ivory-50: #fcfaf6;
+  --ivory-100: #f7f2ea;
+  --ivory-200: #efe7da;
+  --ivory-300: #e3d8c6;
+
+  /* Color: oxblood (evolved from the seal crimson) */
+  --oxblood-950: #2c0b10;
+  --oxblood-900: #3a0f16;
+  --oxblood-800: #4b141d;
+  --oxblood-700: #641a26;
+  --oxblood-600: #7c2131;
+  --oxblood-500: #94293a;
+
+  /* Color: antique gold, used for rules and on dark grounds only */
+  --gold-600: #9a7744;
+  --gold-500: #b08c57;
+  --gold-300: #d4b47e;
+  --gold-200: #e6cfa4;
+
+  /* Color: ink */
+  --ink-900: #1e1916;
+  --ink-800: #2b2421;
+  --ink-700: #463c37;
+  --ink-600: #5f544e;
+
+  /* Semantic */
+  --bg: var(--ivory-100);
+  --bg-raised: var(--ivory-50);
+  --bg-sunk: var(--ivory-200);
+  --text: var(--ink-900);
+  --text-muted: var(--ink-600);
+  --accent: var(--oxblood-600);
+  --accent-strong: var(--oxblood-700);
+  --rule: rgba(30, 25, 22, 0.14);
+  --rule-strong: rgba(30, 25, 22, 0.28);
+  --focus: #1f5fbf;
+
+  /* Type */
+  --serif: 'EB Garamond', 'Garamond Fallback', Garamond, Georgia, serif;
+  --sans: 'Instrument Sans', 'Sans Fallback', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display: clamp(2.55rem, 1.35rem + 4.4vw, 5.5rem);
+  --fs-h1: clamp(2.4rem, 1.5rem + 3.4vw, 4.6rem);
+  --fs-h2: clamp(2.05rem, 1.45rem + 2.3vw, 3.6rem);
+  --fs-h3: clamp(1.5rem, 1.25rem + 0.9vw, 2.05rem);
+  --fs-h4: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+  --fs-lead: clamp(1.2rem, 1.08rem + 0.45vw, 1.5rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-label: 0.8125rem;
+
+  /* Space (spacious, 8pt based) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+  --section-y: clamp(5rem, 3rem + 7vw, 10rem);
+
+  /* Layout */
+  --gutter: clamp(1rem, 0.25rem + 3.6vw, 4rem);
+  --max: 1360px;
+  --measure: 64ch;
+  --header-h: 5.5rem;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur: 320ms;
+}
+
+@media (max-width: 899px) {
+  :root {
+    --header-h: 4.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+img,
+svg,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+/* Pictures that fill a fixed-ratio frame */
+.media-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.media-fill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol {
+  margin: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  font-feature-settings: 'kern', 'liga', 'onum' 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--oxblood-700);
+  color: var(--ivory-50);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.on-dark :focus-visible,
+.section--dark :focus-visible {
+  outline-color: var(--gold-200);
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 200;
+  padding: 0.75rem 1.25rem;
+  background: var(--oxblood-800);
+  color: var(--ivory-50);
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Layout primitives
+   -------------------------------------------------------------------------- */
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2.2vw, 2rem);
+}
+
+.section {
+  padding-block: var(--section-y);
+  position: relative;
+}
+
+.section--raised {
+  background: var(--bg-raised);
+}
+
+.section--sunk {
+  background: var(--bg-sunk);
+}
+
+.section--dark {
+  background: var(--oxblood-800);
+  color: var(--ivory-100);
+}
+
+/* --------------------------------------------------------------------------
+   Typography helpers
+   -------------------------------------------------------------------------- */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  line-height: 1.3;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 2.25rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+  flex: none;
+}
+
+.section--dark .eyebrow,
+.on-dark .eyebrow {
+  color: var(--gold-300);
+}
+
+.display {
+  font-size: var(--fs-display);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.04;
+  letter-spacing: -0.018em;
+}
+
+.h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.06;
+}
+
+.h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.12;
+}
+
+.h4 {
+  font-size: var(--fs-h4);
+  line-height: 1.2;
+}
+
+.accent-italic {
+  font-style: italic;
+  font-weight: 450;
+  color: var(--accent);
+}
+
+.section--dark .accent-italic,
+.on-dark .accent-italic {
+  color: var(--gold-200);
+}
+
+.lead {
+  font-family: var(--serif);
+  font-size: var(--fs-lead);
+  line-height: 1.45;
+  color: var(--ink-800);
+  font-weight: 400;
+}
+
+.section--dark .lead {
+  color: var(--ivory-100);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.section--dark .muted {
+  color: rgba(247, 242, 234, 0.76);
+}
+
+.small {
+  font-size: var(--fs-small);
+}
+
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: 1.15em;
+}
+
+.label {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.numeral {
+  font-family: var(--serif);
+  font-style: italic;
+  font-feature-settings: 'onum' 1, 'pnum' 1;
+}
+
+/* --------------------------------------------------------------------------
+   Rules: hairlines and the "stitched" ribbon rule from the letterhead
+   -------------------------------------------------------------------------- */
+.rule {
+  height: 1px;
+  background: var(--rule);
+  border: 0;
+  margin: 0;
+}
+
+.stitch {
+  height: 3px;
+  background-image: radial-gradient(circle at 1.5px 1.5px, var(--gold-500) 0.9px, transparent 1.2px);
+  background-size: 7px 3px;
+  background-repeat: repeat-x;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons and links
+   -------------------------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--oxblood-700);
+  --btn-fg: var(--ivory-50);
+  --btn-border: var(--oxblood-700);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  min-height: 3.5rem;
+  padding: 0.95rem 1.75rem;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color var(--dur) var(--ease-out),
+    color var(--dur) var(--ease-out),
+    border-color var(--dur) var(--ease-out);
+}
+
+.btn:hover {
+  --btn-bg: var(--oxblood-900);
+  --btn-border: var(--oxblood-900);
+}
+
+.btn .btn__arrow {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.btn:hover .btn__arrow {
+  transform: translateX(4px);
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--oxblood-700);
+  --btn-border: rgba(100, 26, 38, 0.45);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--oxblood-700);
+  --btn-fg: var(--ivory-50);
+  --btn-border: var(--oxblood-700);
+}
+
+.btn--light {
+  --btn-bg: var(--ivory-50);
+  --btn-fg: var(--oxblood-800);
+  --btn-border: var(--ivory-50);
+}
+
+.btn--light:hover {
+  --btn-bg: var(--gold-200);
+  --btn-border: var(--gold-200);
+  --btn-fg: var(--oxblood-900);
+}
+
+.btn--ghost-light {
+  --btn-bg: transparent;
+  --btn-fg: var(--ivory-50);
+  --btn-border: rgba(247, 242, 234, 0.45);
+}
+
+.btn--ghost-light:hover {
+  --btn-bg: var(--ivory-50);
+  --btn-fg: var(--oxblood-800);
+  --btn-border: var(--ivory-50);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 calc(100% - 0.55rem);
+  background-repeat: no-repeat;
+  transition: background-size var(--dur) var(--ease-out);
+}
+
+.link-arrow:hover {
+  background-size: calc(100% - 1.85rem) 1px;
+}
+
+.link-arrow svg {
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.link-arrow:hover svg {
+  transform: translateX(4px);
+}
+
+.section--dark .link-arrow,
+.on-dark .link-arrow {
+  color: var(--gold-200);
+}
+
+.text-link {
+  color: var(--accent-strong);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: rgba(124, 33, 49, 0.4);
+  transition: text-decoration-color var(--dur-fast) ease;
+}
+
+.text-link:hover {
+  text-decoration-color: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   Forms
+   -------------------------------------------------------------------------- */
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.field label {
+  font-size: var(--fs-label);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-700);
+}
+
+.field .optional {
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--text-muted);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  min-height: 3.25rem;
+  padding: 0.85rem 0;
+  border: 0;
+  border-bottom: 1px solid var(--rule-strong);
+  border-radius: 0;
+  background: transparent;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  transition: border-color var(--dur-fast) ease;
+}
+
+.field textarea {
+  min-height: 7.5rem;
+  resize: vertical;
+}
+
+.field input:hover,
+.field textarea:hover {
+  border-bottom-color: var(--ink-700);
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-bottom-color: var(--oxblood-600);
+  box-shadow: 0 1px 0 0 var(--oxblood-600);
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
+.field [aria-invalid='true'] {
+  border-bottom-color: #a3262a;
+}
+
+.field__error {
+  font-size: var(--fs-small);
+  color: #a3262a;
+  min-height: 0;
+}
+
+.field__error:empty {
+  display: none;
+}
+
+/* --------------------------------------------------------------------------
+   Motion states (only applied when JS and motion are available)
+   -------------------------------------------------------------------------- */
+main:focus {
+  outline: none;
+}
+
+.motion-ready [data-reveal],
+.motion-ready [data-hero-item],
+.motion-ready [data-hero-seal] {
+  opacity: 0;
+}
+
+.motion-ready [data-hero-media] {
+  clip-path: inset(0 0 100% 0);
+}
+
+.motion-ready [data-hero-ribbon] {
+  transform: scaleY(0);
+}
+
+.motion-fallback [data-reveal],
+.motion-fallback [data-hero-item],
+.motion-fallback [data-hero-seal] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.motion-fallback [data-hero-media] {
+  clip-path: none !important;
+}
+
+.motion-fallback [data-hero-ribbon] {
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

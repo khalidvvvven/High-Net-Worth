@@ -1,0 +1,45 @@
+---
+/** The inquiry form in a defined panel, shared by the homepage and Contact page. */
+import InquiryForm from './InquiryForm.astro';
+
+interface Props {
+  id: string;
+  headingLevel?: 'h2' | 'h3';
+}
+const { id, headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+---
+
+<div class="contact-panel">
+  <Heading class="contact-panel__title">Send an inquiry</Heading>
+  <p class="contact-panel__intro">
+    Share a few general details and the office will be in touch to arrange a time to talk.
+  </p>
+  <InquiryForm id={id} />
+</div>
+
+<style>
+  .contact-panel {
+    padding: clamp(1.75rem, 1rem + 2.5vw, 3rem);
+    background: var(--ivory-100);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--oxblood-600);
+  }
+  .contact-panel__title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 1.35rem + 0.8vw, 2.05rem);
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  .contact-panel__intro {
+    margin-top: 0.6rem;
+    margin-bottom: 2rem;
+    max-width: 46ch;
+    color: var(--ink-700);
+  }
+  @media (max-width: 519px) {
+    .contact-panel {
+      margin-inline: calc(var(--gutter) * -0.5);
+    }
+  }
+</style>

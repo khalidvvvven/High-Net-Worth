@@ -1,0 +1,4 @@
+# Concept stage: automatic builds are skipped until the design is approved.
+# Remove this file (and vercel.json) when the site is ready to deploy.
+[build]
+  ignore = "exit 0"

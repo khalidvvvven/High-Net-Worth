@@ -1,0 +1,233 @@
+---
+import { firm, nav, practiceAreas, disclaimer } from '../content/site';
+import Seal from './Seal.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer on-dark">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__brand">
+        <div class="site-footer__seal"><Seal id="footer-seal" variant="line-light" /></div>
+        <div>
+          <p class="site-footer__name">Helen Popich Harris</p>
+          <p class="site-footer__descriptor">Attorney at Law · APLC</p>
+        </div>
+      </div>
+      <a class="site-footer__phone" href={firm.phone.href}>
+        <span class="label">Telephone</span>
+        <span class="site-footer__number">{firm.phone.display}</span>
+      </a>
+    </div>
+
+    <div class="stitch stitch--light" role="presentation"></div>
+
+    <div class="site-footer__grid">
+      <div>
+        <h2 class="site-footer__heading">Office</h2>
+        <address>
+          {firm.legalName}<br />
+          {firm.address.street}, {firm.address.suite}<br />
+          {firm.address.city}, {firm.address.region} {firm.address.postalCode}
+        </address>
+        <p class="site-footer__meta">
+          T <a href={firm.phone.href}>{firm.phone.display}</a><br />
+          F {firm.fax.display}
+        </p>
+        <a class="link-arrow" href={firm.directionsUrl} rel="noopener" target="_blank">
+          Directions<span class="visually-hidden"> (opens Google Maps in a new tab)</span>
+        </a>
+      </div>
+
+      <nav aria-label="Practice areas">
+        <h2 class="site-footer__heading">Practice</h2>
+        <ul role="list">
+          {
+            practiceAreas.map((p) => (
+              <li>
+                <a href={`/practice-areas#${p.id}`}>{p.title}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <nav aria-label="Footer">
+        <h2 class="site-footer__heading">The Firm</h2>
+        <ul role="list">
+          <li><a href="/">Home</a></li>
+          {
+            nav.map((item) => (
+              <li>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+
+      <div>
+        <h2 class="site-footer__heading">Credentials</h2>
+        <ul role="list" class="site-footer__creds">
+          <li>Board Certified Family Law Specialist, Louisiana Board of Legal Specialization</li>
+          <li>Fellow, American Academy of Matrimonial Lawyers</li>
+          <li>AV Preeminent® Rated, Martindale-Hubbell</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__legal">
+      <p>{disclaimer}</p>
+      <p>
+        Responsible attorney: {firm.attorney}, {firm.address.street}, {firm.address.suite}, {firm.address.city}, {firm.address.region}.
+      </p>
+      <p class="site-footer__copy">© {year} {firm.legalName}. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--oxblood-900);
+    color: var(--ivory-100);
+    padding-block: clamp(4rem, 3rem + 4vw, 7rem) 2.5rem;
+  }
+  .site-footer a {
+    color: var(--ivory-50);
+    text-decoration: none;
+  }
+  .site-footer a:hover {
+    color: var(--gold-200);
+  }
+  .site-footer__top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding-bottom: 2.5rem;
+  }
+  .site-footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .site-footer__seal {
+    width: 5.5rem;
+    flex: none;
+  }
+  .site-footer__name {
+    font-family: var(--serif);
+    font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .site-footer__descriptor {
+    margin-top: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(247, 242, 234, 0.72);
+  }
+  .site-footer__phone {
+    display: grid;
+    gap: 0.25rem;
+    text-align: right;
+  }
+  .site-footer__phone .label {
+    color: var(--gold-300);
+  }
+  .site-footer__number {
+    font-family: var(--serif);
+    font-size: clamp(1.8rem, 1.3rem + 1.6vw, 2.6rem);
+    line-height: 1;
+    font-feature-settings: 'lnum' 1;
+  }
+  .stitch--light {
+    background-image: radial-gradient(circle at 1.5px 1.5px, var(--gold-300) 0.9px, transparent 1.2px);
+    opacity: 0.55;
+  }
+  .site-footer__grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr 0.8fr 1.2fr;
+    gap: 2.5rem;
+    padding-block: 3rem;
+    font-size: var(--fs-small);
+    line-height: 1.7;
+  }
+  .site-footer__heading {
+    font-family: var(--sans);
+    font-size: var(--fs-label);
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold-300);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .site-footer address {
+    font-style: normal;
+  }
+  .site-footer__meta {
+    margin-top: 0.75rem;
+    font-feature-settings: 'lnum' 1;
+  }
+  .site-footer__grid ul {
+    display: grid;
+    gap: 0.35rem;
+  }
+  .site-footer__grid nav a {
+    display: inline-block;
+    padding-block: 0.2rem;
+  }
+  .site-footer__creds {
+    color: rgba(247, 242, 234, 0.85);
+  }
+  .site-footer__creds li + li {
+    margin-top: 0.4rem;
+  }
+  .site-footer .link-arrow {
+    margin-top: 0.5rem;
+    color: var(--gold-200);
+  }
+  .site-footer__legal {
+    border-top: 1px solid rgba(247, 242, 234, 0.14);
+    padding-top: 2rem;
+    display: grid;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: rgba(247, 242, 234, 0.7);
+    max-width: 88ch;
+  }
+  .site-footer__copy {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 899px) {
+    .site-footer {
+      padding-bottom: calc(6rem + env(safe-area-inset-bottom));
+    }
+  }
+  @media (max-width: 999px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 599px) {
+    .site-footer__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .site-footer__phone {
+      text-align: left;
+    }
+    .site-footer__seal {
+      width: 4.5rem;
+    }
+  }
+</style>

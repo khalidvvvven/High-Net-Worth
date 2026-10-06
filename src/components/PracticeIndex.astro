@@ -1,0 +1,127 @@
+---
+import { practiceAreas, custodyNote } from '../content/site';
+import Icon from './Icon.astro';
+---
+
+<ol role="list" class="practice-index">
+  {
+    practiceAreas.map((p) => (
+      <li class="practice-index__item" data-reveal>
+        <a class="practice-index__link" href={`/practice-areas#${p.id}`}>
+          <span class="practice-index__num numeral" aria-hidden="true">{p.number}</span>
+          <span class="practice-index__body">
+            <span class="practice-index__title">{p.title}</span>
+            <span class="practice-index__summary">{p.summary}</span>
+          </span>
+          <span class="practice-index__arrow" aria-hidden="true">
+            <Icon name="arrow" size={18} />
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ol>
+<p class="practice-index__note" data-reveal>{custodyNote}</p>
+
+<style>
+  .practice-index {
+    border-bottom: 1px solid var(--rule);
+  }
+  .practice-index__item {
+    border-top: 1px solid var(--rule);
+  }
+  .practice-index__link {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3.5rem 1fr auto;
+    align-items: start;
+    gap: 1.25rem;
+    padding-block: clamp(1.5rem, 1.1rem + 1vw, 2.15rem);
+    text-decoration: none;
+    color: inherit;
+    isolation: isolate;
+  }
+  .practice-index__link::before {
+    content: '';
+    position: absolute;
+    inset: 0 calc(var(--gutter) * -0.5);
+    z-index: -1;
+    background: var(--ivory-200);
+    opacity: 0;
+    transition: opacity var(--dur) var(--ease-out);
+  }
+  .practice-index__num {
+    padding-top: 0.5rem;
+    font-size: 1.3rem;
+    color: var(--oxblood-600);
+  }
+  .practice-index__body {
+    display: grid;
+    gap: 0.45rem;
+  }
+  .practice-index__title {
+    font-family: var(--serif);
+    font-size: clamp(1.7rem, 1.35rem + 1.1vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    transition:
+      color var(--dur) var(--ease-out),
+      transform var(--dur) var(--ease-out);
+  }
+  .practice-index__summary {
+    max-width: 54ch;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--ink-700);
+  }
+  .practice-index__arrow {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-top: 0.15rem;
+    border: 1px solid var(--rule-strong);
+    border-radius: 50%;
+    color: var(--oxblood-700);
+    transition:
+      background-color var(--dur) var(--ease-out),
+      border-color var(--dur) var(--ease-out),
+      color var(--dur) var(--ease-out);
+  }
+  .practice-index__link:hover::before {
+    opacity: 1;
+  }
+  .practice-index__link:hover .practice-index__title {
+    color: var(--oxblood-700);
+    transform: translateX(6px);
+  }
+  .practice-index__link:hover .practice-index__arrow {
+    background: var(--oxblood-700);
+    border-color: var(--oxblood-700);
+    color: var(--ivory-50);
+  }
+  .practice-index__note {
+    margin-top: 1.5rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--ink-800);
+  }
+
+  @media (max-width: 639px) {
+    .practice-index__link {
+      grid-template-columns: 2.25rem 1fr;
+      gap: 0.75rem;
+    }
+    .practice-index__arrow {
+      display: none;
+    }
+    .practice-index__num {
+      padding-top: 0.4rem;
+      font-size: 1.1rem;
+    }
+    .practice-index__summary {
+      font-size: 1rem;
+    }
+  }
+</style>

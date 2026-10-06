@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HPH Boards</title>
+<style>
+@font-face{font-family:'EB Garamond';src:url('../../public/fonts/eb-garamond-latin-wght-normal.woff2') format('woff2');font-weight:400 800}
+@font-face{font-family:'EB Garamond';src:url('../../public/fonts/eb-garamond-latin-wght-italic.woff2') format('woff2');font-weight:400 800;font-style:italic}
+@font-face{font-family:'Instrument Sans';src:url('../../public/fonts/instrument-sans-latin-wght-normal.woff2') format('woff2');font-weight:400 700}
+:root{--ox:#641a26;--crimson:#7c2131;--gold:#b08c57;--gold3:#d4b47e;--ivory:#f7f2ea;--ink:#1e1916;--muted:#6b605a;--bg:#ebe7e1}
+*{box-sizing:border-box}
+body{margin:0;background:#cfcac3;font-family:'Instrument Sans',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.board{position:relative;width:1600px;height:1067px;background:var(--bg);overflow:hidden;margin:0 0 40px}
+.bar{position:absolute;top:30px;left:56px;right:56px;display:flex;justify-content:space-between;align-items:baseline;font-size:10.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.bar b{color:var(--crimson);font-weight:600}
+.title{font-family:'EB Garamond',serif;font-weight:500;font-size:30px;line-height:1.1;letter-spacing:-.01em;margin:0}
+.title em{font-style:italic;color:var(--crimson)}
+.kicker{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--crimson);margin:0 0 10px}
+.note{font-size:13px;line-height:1.55;color:var(--muted);margin:0}
+.frame{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 40px 70px -30px rgba(50,20,24,.35),0 0 0 1px rgba(30,20,20,.07)}
+.frame__bar{height:28px;background:#f4f2ef;border-bottom:1px solid #e4e0da;display:flex;align-items:center;gap:6px;padding:0 12px}
+.frame__bar i{width:9px;height:9px;border-radius:50%;background:#d8d3cc;display:block}
+.frame__bar span{margin-left:14px;flex:1;max-width:340px;height:16px;border-radius:8px;background:#fff;border:1px solid #e7e3dd;font-size:9px;line-height:15px;color:#9a918a;padding-left:10px;letter-spacing:.02em}
+.frame__view{overflow:hidden;position:relative}
+.frame__view img{width:100%}
+.phone{background:#191413;border-radius:46px;padding:9px;box-shadow:0 40px 60px -30px rgba(50,20,24,.45),0 0 0 1px rgba(0,0,0,.4)}
+.phone img{border-radius:38px;width:100%}
+.cap{margin-top:14px;font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-align:center}
+.cap b{display:block;font-family:'EB Garamond',serif;font-size:17px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:500;margin-top:4px}
+.rule{height:1px;background:rgba(30,25,22,.16);border:0;margin:0}
+</style>
+</head>
+<body>
+
+<!-- ============ BOARD 02: Hero + Design Language ============ -->
+<section class="board" id="b2">
+  <div class="bar"><span>Helen Popich Harris, APLC <b>·</b> Website Concept</span><span>02 / 05 &nbsp; Hero &amp; Design Language</span></div>
+
+  <div style="position:absolute;left:56px;top:78px;width:1000px">
+    <div class="frame">
+      <div class="frame__bar"><i></i><i></i><i></i><span>harrisaplc.com</span></div>
+      <div class="frame__view" style="height:564px"><img src="assets/home-fold@2x.png" alt=""></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:28px;margin-top:34px">
+      <div><p class="kicker">The signature</p><p class="note">The letterhead’s oxblood ribbon and Board Certified seal become a vertical “spine” between counsel and portrait. The identity is evolved, not replaced.</p></div>
+      <div><p class="kicker">The positioning</p><p class="note">The first ten seconds state the practice plainly: experience, board certification and financially complex divorce. Credentials follow immediately.</p></div>
+      <div><p class="kicker">The tone</p><p class="note">Private-wealth restraint rather than courtroom cliché. There are no gavels, scales or stock handshakes, only Helen’s own photography.</p></div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:30px">
+      <div><div class="frame" style="height:178px;position:relative"><img src="assets/home-fold@2x.png" style="position:absolute;width:1440px;max-width:none;left:-640px;top:-616px" alt=""></div><div class="cap" style="text-align:left">Detail<b>Seal on the ribbon</b></div></div>
+      <div><div class="frame" style="height:178px;position:relative;background:#fcfaf6"><img src="assets/sec-credentials@2x.png" style="position:absolute;width:1440px;max-width:none;left:-24px;top:-8px" alt=""></div><div class="cap" style="text-align:left">Detail<b>Typographic credentials</b></div></div>
+      <div><div class="frame" style="height:178px;position:relative;background:#4b141d"><img src="assets/sec-finance@2x.png" style="position:absolute;width:1440px;max-width:none;left:-712px;top:-118px" alt=""></div><div class="cap" style="text-align:left">Detail<b>Ledger with double rule</b></div></div>
+    </div>
+  </div>
+
+  <div style="position:absolute;left:1100px;top:78px;width:444px">
+    <p class="kicker">Identity, evolved</p>
+    <div style="display:flex;align-items:center;gap:22px;padding:18px 0 22px">
+      <div style="text-align:center"><img src="assets/original-seal.png" style="width:118px;height:118px;object-fit:cover;border-radius:50%" alt=""><div class="cap" style="margin-top:10px">Existing</div></div>
+      <svg width="34" height="14" viewBox="0 0 34 14" fill="none" stroke="#7c2131" stroke-width="1.3"><path d="M0 7h32M26 1l6 6-6 6"/></svg>
+      <div style="text-align:center"><div style="width:118px"><svg viewBox="0 0 240 240" width="118" height="118"><defs><path id="bt" d="M120 208.5A88.5 88.5 0 1 1 120 31.5A88.5 88.5 0 1 1 120 208.5"/><path id="bb" d="M120 22.5A97.5 97.5 0 1 0 120 217.5A97.5 97.5 0 1 0 120 22.5"/></defs><circle cx="120" cy="120" r="118" fill="#7c2131"/><circle cx="120" cy="120" r="108" fill="none" stroke="#d4b47e" stroke-width="1.1"/><circle cx="120" cy="120" r="81" fill="none" stroke="#d4b47e" stroke-width="1.7" stroke-dasharray="0 4.1" stroke-linecap="round"/><g font-family="EB Garamond" font-weight="600" font-size="12.6" fill="#d4b47e"><text letter-spacing="3.4"><textPath href="#bt" startOffset="50%" text-anchor="middle">HELEN POPICH HARRIS</textPath></text><text letter-spacing="1.25"><textPath href="#bb" startOffset="50%" text-anchor="middle">BOARD CERTIFIED FAMILY LAW SPECIALIST</textPath></text></g><circle cx="27" cy="120" r="1.9" fill="#d4b47e" transform="rotate(13.4 120 120)"/><circle cx="213" cy="120" r="1.9" fill="#d4b47e" transform="rotate(-13.4 120 120)"/><g fill="#d4b47e" transform="translate(79 79) scale(0.683)"><rect x="16" y="14" width="88" height="6.5"/><rect x="22" y="24.5" width="76" height="3.2"/><path d="M28 32H52V34.6Q46.4 34.6 45.4 38.4V82.6Q46.4 86.4 52 86.4V89H28V86.4Q33.6 86.4 34.6 82.6V38.4Q33.6 34.6 28 34.6Z"/><path d="M68 32H92V34.6Q86.4 34.6 85.4 38.4V82.6Q86.4 86.4 92 86.4V89H68V86.4Q73.6 86.4 74.6 82.6V38.4Q73.6 34.6 68 34.6Z"/><path d="M45.4 60C48.6 53.4 54.6 49.6 61.6 49.6C68.6 49.6 73.6 52.8 74.6 57.4V66C73.4 60.2 69.2 55.6 63 55.6C55.6 55.6 49.6 59 45.4 62.6Z"/><rect x="20" y="93" width="80" height="6.5"/></g></svg></div><div class="cap" style="margin-top:10px">Refined vector seal</div></div>
+      <div style="text-align:center"><div style="width:62px;height:118px;display:grid;place-items:center"><svg viewBox="0 0 120 120" width="62" height="62" fill="#7c2131"><rect x="16" y="14" width="88" height="6.5"/><rect x="22" y="24.5" width="76" height="3.2"/><path d="M28 32H52V34.6Q46.4 34.6 45.4 38.4V82.6Q46.4 86.4 52 86.4V89H28V86.4Q33.6 86.4 34.6 82.6V38.4Q33.6 34.6 28 34.6Z"/><path d="M68 32H92V34.6Q86.4 34.6 85.4 38.4V82.6Q86.4 86.4 92 86.4V89H68V86.4Q73.6 86.4 74.6 82.6V38.4Q73.6 34.6 68 34.6Z"/><path d="M45.4 60C48.6 53.4 54.6 49.6 61.6 49.6C68.6 49.6 73.6 52.8 74.6 57.4V66C73.4 60.2 69.2 55.6 63 55.6C55.6 55.6 49.6 59 45.4 62.6Z"/><rect x="20" y="93" width="80" height="6.5"/></svg></div><div class="cap" style="margin-top:10px">Monogram</div></div>
+    </div>
+    <hr class="rule">
+
+    <p class="kicker" style="margin-top:22px">Palette</p>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+      <div><div style="height:74px;background:#641a26"></div><p class="note" style="font-size:11px;margin-top:7px;color:#1e1916">Oxblood<br><span style="color:#6b605a">#641A26</span></p></div>
+      <div><div style="height:74px;background:#7c2131"></div><p class="note" style="font-size:11px;margin-top:7px;color:#1e1916">Seal Crimson<br><span style="color:#6b605a">#7C2131</span></p></div>
+      <div><div style="height:74px;background:#b08c57"></div><p class="note" style="font-size:11px;margin-top:7px;color:#1e1916">Antique Gold<br><span style="color:#6b605a">#B08C57</span></p></div>
+      <div><div style="height:74px;background:#f7f2ea;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)"></div><p class="note" style="font-size:11px;margin-top:7px;color:#1e1916">Ivory Stock<br><span style="color:#6b605a">#F7F2EA</span></p></div>
+      <div><div style="height:74px;background:#1e1916"></div><p class="note" style="font-size:11px;margin-top:7px;color:#1e1916">Ink<br><span style="color:#6b605a">#1E1916</span></p></div>
+    </div>
+    <p class="note" style="font-size:11.5px;margin-top:10px">Gold is reserved for rules, numerals and dark grounds. All text pairs meet WCAG AA.</p>
+
+    <hr class="rule" style="margin-top:22px">
+    <p class="kicker" style="margin-top:22px">Typography</p>
+    <div style="display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center">
+      <div style="font-family:'EB Garamond';font-size:84px;line-height:.9;color:#1e1916">Aa</div>
+      <div><div style="font-family:'EB Garamond';font-size:24px;line-height:1.1">EB Garamond <em style="color:#7c2131">Italic</em></div><p class="note" style="font-size:12px;margin-top:4px">Headings and display. A contemporary cut of the Garamond already used on the letterhead.</p></div>
+      <div style="font-family:'Instrument Sans';font-size:70px;line-height:.9;font-weight:500;color:#1e1916">Aa</div>
+      <div><div style="font-family:'Instrument Sans';font-size:19px;font-weight:500">Instrument Sans</div><p class="note" style="font-size:12px;margin-top:4px">Body copy, labels and interface. Calm, legible and modern at every size.</p></div>
+    </div>
+
+    <hr class="rule" style="margin-top:22px">
+    <p class="kicker" style="margin-top:22px">Details</p>
+    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+      <span style="display:inline-flex;align-items:center;gap:10px;background:#641a26;color:#fcfaf6;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:13px 18px">Request a Consultation <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12h17M14 6l6 6-6 6"/></svg></span>
+      <span style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(100,26,38,.45);color:#641a26;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:12px 16px">About Helen</span>
+      <span style="width:46px;height:62px;background:#7c2131;position:relative;display:inline-block">
+        <i style="position:absolute;top:0;bottom:0;left:5px;width:3px;background-image:radial-gradient(circle at 1.5px 1.5px,#d4b47e .85px,transparent 1.15px);background-size:3px 7px"></i>
+        <i style="position:absolute;top:0;bottom:0;right:5px;width:3px;background-image:radial-gradient(circle at 1.5px 1.5px,#d4b47e .85px,transparent 1.15px);background-size:3px 7px"></i>
+      </span>
+      <span class="note" style="font-size:11.5px;max-width:190px">Stitched ribbon detail, drawn from the letterhead</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOARD 03: Practice + Credentials ============ -->
+<section class="board" id="b3">
+  <div class="bar"><span>Helen Popich Harris, APLC <b>·</b> Website Concept</span><span>03 / 05 &nbsp; Credentials, Practice &amp; Recognition</span></div>
+  <div style="position:absolute;left:56px;top:76px;width:1488px">
+    <div class="frame"><div class="frame__view"><img src="assets/sec-credentials@2x.png" alt=""></div></div>
+    <p class="note" style="margin-top:12px;font-size:12.5px">Credentials are set as a curated typographic strip directly beneath the hero: prestigious, legible and free of a logo wall.</p>
+  </div>
+  <div style="position:absolute;left:56px;top:342px;width:868px">
+    <div class="frame" style="background:#fcfaf6;padding:18px 22px 4px"><div class="frame__view" style="height:635px"><img src="assets/sec-practice@2x.png" alt=""></div></div>
+    <p class="note" style="margin-top:12px;font-size:12.5px">An editorial practice index replaces generic service cards and states plainly that contested custody is not handled.</p>
+  </div>
+  <div style="position:absolute;left:960px;top:342px;width:584px">
+    <div class="frame" style="background:#efe7da;padding:30px 30px 26px">
+      <div style="height:128px;overflow:hidden"><img src="assets/sec-recognition-aside@2x.png" style="width:300px" alt=""></div>
+      <img src="assets/sec-recognition-table@2x.png" style="width:524px;margin-top:34px" alt="">
+    </div>
+    <p class="note" style="margin-top:12px;font-size:12.5px">Recognition stays typographic. No official badges are recreated or implied.</p>
+  </div>
+</section>
+
+<!-- ============ BOARD 04: Mobile ============ -->
+<section class="board" id="b4">
+  <div class="bar"><span>Helen Popich Harris, APLC <b>·</b> Website Concept</span><span>04 / 05 &nbsp; Mobile Homepage · 390px</span></div>
+  <div style="position:absolute;left:56px;top:122px;width:1488px">
+    <h2 class="title">Designed for the phone, <em>not merely stacked.</em></h2>
+  </div>
+  <div style="position:absolute;left:56px;right:56px;top:200px;display:grid;grid-template-columns:repeat(5,1fr);gap:22px">
+    <div><div class="phone"><img src="assets/m-home-1.png" alt=""></div><div class="cap">01<b>Portrait-led hero</b></div></div>
+    <div><div class="phone"><img src="assets/m-home-2.png" alt=""></div><div class="cap">02<b>Credentials, legible</b></div></div>
+    <div><div class="phone"><img src="assets/m-home-3.png" alt=""></div><div class="cap">03<b>Practice index</b></div></div>
+    <div><div class="phone"><img src="assets/m-home-4.png" alt=""></div><div class="cap">04<b>Financially complex divorce</b></div></div>
+    <div><div class="phone"><img src="assets/m-home-5.png" alt=""></div><div class="cap">05<b>Phone first, then inquiry</b></div></div>
+  </div>
+  <div style="position:absolute;left:56px;right:56px;top:906px;display:flex;gap:40px">
+    <p class="note" style="font-size:12.5px;max-width:470px">A call and consultation bar appears once the hero has been passed, so contact is always one tap away without crowding the first screen.</p>
+    <p class="note" style="font-size:12.5px;max-width:470px">There is no horizontal overflow, every touch target is at least 44px and the type is sized for comfortable reading at arm’s length.</p>
+  </div>
+</section>
+
+<!-- ============ BOARD 05: Interior pages ============ -->
+<section class="board" id="b5">
+  <div class="bar"><span>Helen Popich Harris, APLC <b>·</b> Website Concept</span><span>05 / 05 &nbsp; Interior Pages</span></div>
+  <div style="position:absolute;left:56px;top:76px;width:724px">
+    <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>harrisaplc.com/about</span></div>
+      <div class="frame__view" style="height:878px"><img src="assets/about-top@2x.png" alt=""></div></div>
+    <div class="cap" style="text-align:left;margin-top:12px">About<b>An editorial profile with verified credentials</b></div>
+  </div>
+  <div style="position:absolute;left:820px;top:76px;width:724px">
+    <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>harrisaplc.com/practice-areas</span></div>
+      <div class="frame__view" style="height:398px"><img src="assets/practice-top@2x.png" alt=""></div></div>
+    <div class="cap" style="text-align:left;margin-top:10px">Practice Areas<b>Readable guidance, not a keyword dump</b></div>
+  </div>
+  <div style="position:absolute;left:820px;top:570px;width:724px">
+    <div class="frame"><div class="frame__bar"><i></i><i></i><i></i><span>harrisaplc.com/contact</span></div>
+      <div class="frame__view" style="height:384px"><img src="assets/contact-top@2x.png" style="margin-top:-330px" alt=""></div></div>
+    <div class="cap" style="text-align:left;margin-top:12px">Contact<b>Telephone first, then a minimal inquiry form</b></div>
+  </div>
+</section>
+
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { practiceAreas } from '../content/site';
+import '../styles/pages.css';
+---
+
+<Base
+  title="Practice Areas: Divorce, Community Property & QDROs"
+  description="Divorce, complex community property partitions, high-value marital estates, spousal support, retirement division and QDROs, and child support in Lafayette and across Acadiana."
+  path="/practice-areas"
+>
+  <section class="page-hero practice-hero" aria-labelledby="practice-hero-title">
+    <div class="container grid-12">
+      <div class="practice-hero__copy">
+        <p class="eyebrow" data-hero-item>Practice Areas</p>
+        <h1 id="practice-hero-title" class="page-hero__title" data-hero-item>
+          Divorce, and the <em class="accent-italic">financial matters</em> that follow.
+        </h1>
+        <p class="lead page-hero__lead" data-hero-item>
+          Helen’s practice is concentrated on divorce and its financial consequences, particularly where the marital
+          estate is substantial or complex. Each area below explains when she may be able to help.
+        </p>
+      </div>
+      <nav class="practice-hero__toc" aria-label="On this page" data-hero-item>
+        <p class="label practice-hero__toc-label">On this page</p>
+        <ol role="list">
+          {
+            practiceAreas.map((p) => (
+              <li>
+                <a href={`#${p.id}`}>
+                  <span class="numeral" aria-hidden="true">
+                    {p.number}
+                  </span>
+                  <span>{p.title}</span>
+                  <Icon name="arrow-down" size={16} />
+                </a>
+              </li>
+            ))
+          }
+        </ol>
+      </nav>
+    </div>
+    <span class="practice-hero__sentinel" data-action-sentinel aria-hidden="true"></span>
+  </section>
+
+  {
+    practiceAreas.map((p, i) => (
+      <section
+        id={p.id}
+        class:list={['section', 'area', i % 2 === 0 ? 'section--raised' : '']}
+        aria-labelledby={`${p.id}-title`}
+      >
+        <div class="container split">
+          <div class="split__label">
+            <div class="split__label-inner" data-reveal>
+              <span class="area__num numeral" aria-hidden="true">
+                {p.number}
+              </span>
+              <h2 id={`${p.id}-title`} class="h2 area__title">
+                {p.title}
+              </h2>
+              <p class="area__summary muted">{p.summary}</p>
+            </div>
+          </div>
+          <div class="split__body">
+            <div class="prose area__prose">
+              {p.body.map((para, j) => (
+                <p class={j === 0 ? 'lead' : undefined} data-reveal>
+                  {para}
+                </p>
+              ))}
+            </div>
+            <div class="area__includes" data-reveal>
+              <h3 class="label area__includes-title">Matters commonly include</h3>
+              <ul role="list" class="list-rules area__list">
+                {p.includes.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            {p.id === 'child-support' && (
+              <aside class="custody-note" aria-labelledby="custody-note-title" data-reveal>
+                <h3 id="custody-note-title" class="custody-note__title">
+                  A note on custody
+                </h3>
+                <p>
+                  The practice does not handle contested child custody matters. If your matter involves a custody
+                  dispute, we recommend consulting an attorney who concentrates in that area.
+                </p>
+              </aside>
+            )}
+            <a class="link-arrow area__link" href="/contact#inquiry" data-reveal>
+              Discuss your matter <Icon name="arrow" size={16} />
+            </a>
+          </div>
+        </div>
+      </section>
+    ))
+  }
+
+  <CtaBand id="practice-cta" />
+</Base>
+
+<style>
+  .practice-hero {
+    border-bottom: 1px solid var(--rule);
+  }
+  .practice-hero .grid-12 {
+    align-items: end;
+  }
+  .practice-hero__copy {
+    grid-column: 1 / span 7;
+  }
+  .practice-hero__toc {
+    grid-column: 9 / span 4;
+  }
+  .practice-hero__toc-label {
+    color: var(--text-muted);
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .practice-hero__toc a {
+    display: grid;
+    grid-template-columns: 2.25rem 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 3rem;
+    padding-block: 0.55rem;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: var(--ink-900);
+    transition: color var(--dur-fast) ease;
+  }
+  .practice-hero__toc a .numeral {
+    font-size: 1.05rem;
+    color: var(--oxblood-600);
+  }
+  .practice-hero__toc a :global(svg) {
+    color: var(--oxblood-600);
+    opacity: 0.6;
+    transition:
+      transform var(--dur) var(--ease-out),
+      opacity var(--dur) var(--ease-out);
+  }
+  .practice-hero__toc a:hover {
+    color: var(--oxblood-700);
+  }
+  .practice-hero__toc a:hover :global(svg) {
+    opacity: 1;
+    transform: translateY(3px);
+  }
+  .practice-hero__sentinel {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 1px;
+  }
+  @media (max-width: 899px) {
+    .practice-hero__copy,
+    .practice-hero__toc {
+      grid-column: 1 / -1;
+    }
+    .practice-hero__toc {
+      margin-top: 3rem;
+    }
+  }
+
+  .area__num {
+    font-size: clamp(3.5rem, 2.5rem + 3vw, 5.5rem);
+    line-height: 0.9;
+    color: var(--oxblood-600);
+    font-feature-settings: 'lnum' 1;
+  }
+  .area__summary {
+    max-width: 34ch;
+    color: var(--ink-700);
+  }
+  .area__prose {
+    color: var(--ink-700);
+  }
+  .area__prose .lead {
+    color: var(--ink-900);
+  }
+  .area__includes {
+    margin-top: 2.75rem;
+  }
+  .area__includes-title {
+    color: var(--oxblood-700);
+    margin-bottom: 1rem;
+  }
+  .area__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2rem;
+  }
+  .area__list li {
+    font-size: 1.0625rem;
+  }
+  .area__link {
+    margin-top: 2.25rem;
+  }
+  .custody-note {
+    margin-top: 2.75rem;
+    padding: 1.5rem 1.75rem;
+    border-left: 3px solid var(--oxblood-600);
+    background: var(--ivory-200);
+  }
+  .custody-note__title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+  }
+  @media (max-width: 639px) {
+    .area__list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

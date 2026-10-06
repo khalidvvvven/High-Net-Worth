@@ -1,0 +1,93 @@
+/* Shared patterns for the interior pages */
+
+.page-hero {
+  position: relative;
+  padding-block: clamp(3rem, 1.5rem + 5vw, 6.5rem) clamp(3.5rem, 2rem + 5vw, 7rem);
+}
+
+.page-hero__title {
+  margin-top: 1.5rem;
+  font-size: clamp(2.6rem, 1.4rem + 4vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.page-hero__lead {
+  margin-top: 1.75rem;
+  max-width: 38rem;
+}
+
+/* Editorial split: a quiet label column and a reading column */
+.split {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2.2vw, 2rem);
+}
+
+.split__label {
+  grid-column: 1 / span 4;
+}
+
+.split__label-inner {
+  position: sticky;
+  top: calc(var(--header-h) + 2rem);
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+}
+
+.split__body {
+  grid-column: 6 / span 7;
+}
+
+@media (max-width: 899px) {
+  .split__label,
+  .split__body {
+    grid-column: 1 / -1;
+  }
+  .split__label-inner {
+    position: static;
+    margin-bottom: 2rem;
+  }
+}
+
+.drop-cap::first-letter {
+  float: left;
+  margin: 0.1em 0.12em 0 0;
+  font-family: var(--serif);
+  font-size: 4.6em;
+  line-height: 0.82;
+  color: var(--oxblood-600);
+}
+
+.pull-line {
+  margin-block: 2.5rem;
+  padding-block: 1.75rem;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  font-family: var(--serif);
+  font-size: clamp(1.5rem, 1.2rem + 1.1vw, 2.15rem);
+  line-height: 1.25;
+  color: var(--oxblood-700);
+}
+
+.list-rules {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.list-rules li {
+  position: relative;
+  padding: 0.95rem 0 0.95rem 1.75rem;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.5;
+}
+
+.list-rules li::before {
+  content: '';
+  position: absolute;
+  left: 0.15rem;
+  top: 1.55rem;
+  width: 0.7rem;
+  height: 1px;
+  background: var(--oxblood-600);
+}

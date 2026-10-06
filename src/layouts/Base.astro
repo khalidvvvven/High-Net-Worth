@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import MobileActionBar from '../components/MobileActionBar.astro';
+import { firm, practiceAreas } from '../content/site';
+
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+}
+
+const { title, description, path = Astro.url.pathname } = Astro.props;
+const canonical = new URL(path, Astro.site).toString();
+const fullTitle = title.includes(firm.name) ? title : `${title} | ${firm.legalName}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'LegalService',
+  name: firm.legalName,
+  url: Astro.site?.toString(),
+  telephone: '+1-337-291-6092',
+  faxNumber: '+1-337-233-5673',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: `${firm.address.street}, ${firm.address.suite}`,
+    addressLocality: firm.address.city,
+    addressRegion: firm.address.regionCode,
+    postalCode: firm.address.postalCode,
+    addressCountry: 'US',
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Lafayette, Louisiana' },
+    { '@type': 'Place', name: 'Acadiana, Louisiana' },
+  ],
+  knowsAbout: practiceAreas.map((p) => p.title),
+  employee: {
+    '@type': 'Person',
+    name: firm.attorney,
+    jobTitle: 'Attorney at Law, Board Certified Family Law Specialist',
+    alumniOf: 'Loyola University New Orleans School of Law',
+    memberOf: 'American Academy of Matrimonial Lawyers',
+  },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#f7f2ea" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={firm.legalName} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="en_US" />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <link rel="preload" href="/fonts/eb-garamond-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/instrument-sans-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script is:inline>
+      (function () {
+        var d = document.documentElement;
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var still = /[?&]still\b/.test(location.search);
+        if (!reduce && !still) {
+          d.classList.add('motion-ready');
+          // Never leave content hidden if the motion script fails to run.
+          window.setTimeout(function () {
+            if (!d.classList.contains('motion-live')) d.classList.add('motion-fallback');
+          }, 2500);
+        }
+      })();
+    </script>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <Header current={path} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <MobileActionBar />
+    <script>
+      // Load the motion layer only when it will be used.
+      if (document.documentElement.classList.contains('motion-ready')) {
+        import('../scripts/motion');
+      }
+    </script>
+  </body>
+</html>

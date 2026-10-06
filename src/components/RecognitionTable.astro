@@ -1,0 +1,112 @@
+---
+import { recognition } from '../content/site';
+---
+
+<table class="recognition">
+  <caption class="visually-hidden">Professional recognition</caption>
+  <thead>
+    <tr>
+      <th scope="col">Organization</th>
+      <th scope="col">Distinction</th>
+      <th scope="col"><span class="visually-hidden">Year selected</span><span aria-hidden="true">Year</span></th>
+    </tr>
+  </thead>
+  <tbody>
+    {
+      recognition.map((r) => (
+        <tr data-reveal>
+          <th scope="row">{r.organization}</th>
+          <td class="recognition__distinction">{r.distinction}</td>
+          <td class="recognition__years">
+            {r.years || (
+              <span>
+                <span aria-hidden="true">—</span>
+                <span class="visually-hidden">Not applicable</span>
+              </span>
+            )}
+          </td>
+        </tr>
+      ))
+    }
+  </tbody>
+</table>
+
+<style>
+  .recognition {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  .recognition thead th {
+    padding-bottom: 1rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  .recognition thead th:last-child {
+    text-align: right;
+  }
+  .recognition tbody tr {
+    border-bottom: 1px solid var(--rule);
+  }
+  .recognition tbody th,
+  .recognition td {
+    padding-block: 1.6rem;
+    vertical-align: baseline;
+  }
+  .recognition tbody th {
+    width: 31%;
+    padding-right: 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1.45;
+    text-transform: uppercase;
+    color: var(--oxblood-700);
+  }
+  .recognition__distinction {
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.75rem);
+    line-height: 1.2;
+    padding-right: 1.5rem;
+  }
+  .recognition__years {
+    text-align: right;
+    white-space: nowrap;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink-800);
+    font-feature-settings: 'lnum' 1;
+  }
+
+  @media (max-width: 639px) {
+    .recognition thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+    }
+    .recognition tbody tr {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.35rem 1rem;
+      padding-block: 1.25rem;
+    }
+    .recognition tbody th,
+    .recognition td {
+      padding: 0;
+    }
+    .recognition tbody th {
+      width: auto;
+      grid-column: 1 / -1;
+    }
+    .recognition__years:has(> span) {
+      display: none;
+    }
+  }
+</style>

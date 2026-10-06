@@ -1,0 +1,530 @@
+---
+import { Picture } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Seal from '../components/Seal.astro';
+import Icon from '../components/Icon.astro';
+import RecognitionTable from '../components/RecognitionTable.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { facts, presentations, recognitionNote } from '../content/site';
+import '../styles/pages.css';
+
+import deskPortrait from '../assets/images/helen-portrait-desk.jpg';
+import officePortrait from '../assets/images/helen-portrait-office.jpg';
+import aamlLogo from '../assets/images/aaml-logo-ink.png';
+
+const principles = [
+  {
+    numeral: 'I',
+    title: 'Preparation',
+    text: 'Financially complex matters reward preparation. Helen builds a thorough understanding of the assets, income and history of each case before advising on strategy.',
+  },
+  {
+    numeral: 'II',
+    title: 'Discretion',
+    text: 'Family law matters are personal. Each one is handled with care and discretion, with attention to the privacy of clients and their families.',
+  },
+  {
+    numeral: 'III',
+    title: 'Perspective',
+    text: 'Not every dispute should be litigated, and not every settlement is a good one. Helen gives candid advice about the options, the risks and the long-term consequences of each.',
+  },
+];
+---
+
+<Base
+  title="About Helen Popich Harris"
+  description="Helen Popich Harris is a Board Certified Family Law Specialist, Fellow of the American Academy of Matrimonial Lawyers and AAML Certified Arbitrator practicing in Lafayette, Louisiana."
+  path="/about"
+>
+  <!-- Profile hero -->
+  <section class="page-hero profile" aria-labelledby="profile-title">
+    <div class="container grid-12 profile__grid">
+      <div class="profile__copy">
+        <p class="eyebrow" data-hero-item>About Helen</p>
+        <h1 id="profile-title" class="page-hero__title" data-hero-item>
+          Helen Popich Harris
+        </h1>
+        <p class="profile__role" data-hero-item>
+          Attorney at Law <span aria-hidden="true">·</span> Board Certified Family Law Specialist
+        </p>
+        <p class="lead page-hero__lead" data-hero-item>
+          A Lafayette attorney whose practice is devoted to divorce and the financial matters that accompany it, with
+          the depth that complex marital estates require.
+        </p>
+        <dl class="profile__facts" data-hero-item>
+          <div>
+            <dt>Admitted</dt>
+            <dd>Louisiana, 1991</dd>
+          </div>
+          <div>
+            <dt>Fellow</dt>
+            <dd>AAML</dd>
+          </div>
+          <div>
+            <dt>Arbitrator</dt>
+            <dd>AAML Certified</dd>
+          </div>
+        </dl>
+      </div>
+      <figure class="profile__figure">
+        <div class="profile__frame" data-hero-media>
+          <Picture
+            src={deskPortrait}
+            alt="Black and white portrait of Helen Popich Harris seated at her desk"
+            widths={[480, 760, 1100]}
+            sizes="(min-width: 900px) 44vw, 100vw"
+            formats={['avif', 'webp']}
+            loading="eager"
+            fetchpriority="high"
+            pictureAttributes={{ class: 'media-fill' }}
+          />
+        </div>
+        <div class="profile__ribbon" data-hero-ribbon aria-hidden="true"></div>
+        <div class="profile__seal" data-hero-seal aria-hidden="true">
+          <Seal id="profile-seal" />
+        </div>
+      </figure>
+    </div>
+    <span class="profile__sentinel" data-action-sentinel aria-hidden="true"></span>
+  </section>
+
+  <!-- Biography -->
+  <section class="section section--raised" aria-labelledby="bio-title">
+    <div class="container split">
+      <div class="split__label">
+        <div class="split__label-inner" data-reveal>
+          <p class="eyebrow">Biography</p>
+          <h2 id="bio-title" class="h2">A practice built on <em class="accent-italic">depth and continuity.</em></h2>
+        </div>
+      </div>
+      <div class="split__body prose bio">
+        <p class="lead drop-cap" data-reveal>
+          Helen Popich Harris is a Lafayette attorney whose practice is devoted to family law, with a particular focus
+          on divorce and the financial questions that come with it: the classification and partition of community
+          property, the division of retirement benefits, and spousal and child support.
+        </p>
+        <p data-reveal>
+          She is certified as a Family Law Specialist by the Louisiana Board of Legal Specialization and is a Fellow of
+          the American Academy of Matrimonial Lawyers, a national association of experienced family law attorneys. She
+          is also an AAML Certified Arbitrator.
+        </p>
+        <p data-reveal>
+          Helen earned her law degree from Loyola University School of Law in New Orleans and was admitted to the
+          Louisiana Bar in 1991.
+        </p>
+        <p class="pull-line" data-reveal>
+          A divorce is both a legal proceeding and a financial reorganization.
+        </p>
+        <p data-reveal>
+          Throughout her career she has contributed to the education of the profession, presenting to the Lafayette Bar
+          Association’s Paula K. Woodruff Family Law Section, the Louisiana Society of Certified Public Accountants, the
+          National Business Institute and the Louisiana State University Family Law Seminar on subjects including
+          reimbursement claims, attorney’s fees, ethics and the accountant’s role in divorce.
+        </p>
+        <p data-reveal>
+          Her practice is intentionally personal. Clients work with Helen directly, and she remains involved at every
+          stage of their matter, from the first consultation to its conclusion.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach -->
+  <section class="section approach" aria-labelledby="approach-title">
+    <div class="container">
+      <div class="approach__head" data-reveal>
+        <p class="eyebrow">Approach</p>
+        <h2 id="approach-title" class="h2">How Helen <em class="accent-italic">works with clients.</em></h2>
+      </div>
+      <ol role="list" class="approach__list">
+        {
+          principles.map((p) => (
+            <li class="approach__item" data-reveal>
+              <span class="approach__num numeral" aria-hidden="true">
+                {p.numeral}
+              </span>
+              <h3 class="h3">{p.title}</h3>
+              <p class="muted">{p.text}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Credentials -->
+  <section class="section section--sunk" aria-labelledby="credentials-heading">
+    <div class="container grid-12 creds">
+      <div class="creds__figure" data-reveal data-settle>
+        <div class="creds__frame">
+          <Picture
+            src={officePortrait}
+            alt="Helen Popich Harris in her office"
+            widths={[400, 640, 900]}
+            sizes="(min-width: 900px) 34vw, 92vw"
+            formats={['avif', 'webp']}
+            pictureAttributes={{ class: 'media-fill' }}
+          />
+        </div>
+      </div>
+      <div class="creds__body">
+        <p class="eyebrow" data-reveal>Credentials</p>
+        <h2 id="credentials-heading" class="h2" data-reveal>Education, admission <em class="accent-italic">and certification.</em></h2>
+        <dl class="creds__list" data-reveal>
+          {
+            facts.map((f) => (
+              <div class="creds__row">
+                <dt>{f.term}</dt>
+                <dd>{f.detail}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <div class="creds__marks" data-reveal>
+          <div class="creds__seal"><Seal id="creds-seal" variant="outline" /></div>
+          <img
+            src={aamlLogo.src}
+            width="170"
+            height={Math.round((170 * aamlLogo.height) / aamlLogo.width)}
+            alt="American Academy of Matrimonial Lawyers"
+            loading="lazy"
+            decoding="async"
+            class="creds__aaml"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recognition -->
+  <section class="section" aria-labelledby="about-recognition-title">
+    <div class="container split">
+      <div class="split__label">
+        <div class="split__label-inner" data-reveal>
+          <p class="eyebrow">Recognition</p>
+          <h2 id="about-recognition-title" class="h2">Recognized by <em class="accent-italic">the profession.</em></h2>
+          <p class="muted small" style="max-width: 36ch">{recognitionNote}</p>
+        </div>
+      </div>
+      <div class="split__body">
+        <RecognitionTable />
+      </div>
+    </div>
+  </section>
+
+  <!-- Teaching -->
+  <section class="section section--raised" aria-labelledby="teaching-title">
+    <div class="container split">
+      <div class="split__label">
+        <div class="split__label-inner" data-reveal>
+          <p class="eyebrow">Teaching &amp; Presentations</p>
+          <h2 id="teaching-title" class="h2">Educating <em class="accent-italic">the profession.</em></h2>
+          <p class="muted" style="max-width: 36ch">
+            Selected continuing legal education presentations to attorneys and accountants.
+          </p>
+        </div>
+      </div>
+      <div class="split__body">
+        <ol role="list" class="talks">
+          {
+            presentations.map((t) => (
+              <li class="talks__item" data-reveal>
+                <span class="talks__year">{t.year}</span>
+                <div>
+                  <p class="talks__title">{t.title}</p>
+                  <p class="talks__venue">{t.venue}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+        <a class="link-arrow talks__link" href="/practice-areas" data-reveal>Practice areas <Icon name="arrow" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand id="about-cta" />
+</Base>
+
+<style>
+  /* Profile hero */
+  .profile__grid {
+    align-items: center;
+  }
+  .profile__copy {
+    grid-column: 1 / span 6;
+  }
+  .profile__role {
+    margin-top: 1rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
+    color: var(--oxblood-700);
+  }
+  .profile__facts {
+    margin-top: 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    border-top: 1px solid var(--rule-strong);
+  }
+  .profile__facts > div {
+    padding: 1.1rem 2rem 0 0;
+  }
+  .profile__facts > div + div {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--rule);
+  }
+  .profile__facts dt {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .profile__facts dd {
+    margin-top: 0.3rem;
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    font-feature-settings: 'lnum' 1;
+  }
+  .profile__figure {
+    grid-column: 8 / span 5;
+    position: relative;
+    margin: 0;
+  }
+  .profile__frame {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--ivory-300);
+  }
+  .profile__frame :global(img) {
+    object-position: 50% 30%;
+  }
+  .profile__ribbon {
+    position: absolute;
+    top: -3rem;
+    bottom: 22%;
+    left: -1.25rem;
+    width: 2.5rem;
+    background: var(--oxblood-600);
+  }
+  .profile__ribbon::before,
+  .profile__ribbon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background-image: radial-gradient(circle at 1.5px 1.5px, var(--gold-300) 0.85px, transparent 1.15px);
+    background-size: 3px 7px;
+    opacity: 0.75;
+  }
+  .profile__ribbon::before {
+    left: 5px;
+  }
+  .profile__ribbon::after {
+    right: 5px;
+  }
+  .profile__seal {
+    position: absolute;
+    left: calc(-1.25rem + 1.25rem - 3.75rem);
+    bottom: calc(22% - 3.75rem);
+    width: 7.5rem;
+    filter: drop-shadow(0 10px 24px rgba(44, 11, 16, 0.25));
+  }
+  .profile {
+    overflow: hidden;
+  }
+  .profile__sentinel {
+    position: absolute;
+    bottom: 0;
+    width: 1px;
+    height: 1px;
+  }
+  @media (max-width: 899px) {
+    .profile__copy,
+    .profile__figure {
+      grid-column: 1 / -1;
+    }
+    .profile__figure {
+      margin-top: 3.5rem;
+      margin-left: 2.25rem;
+    }
+    .profile__ribbon {
+      top: -1.5rem;
+    }
+    .profile__seal {
+      width: 5rem;
+      left: -2.5rem;
+      bottom: calc(22% - 2.5rem);
+    }
+  }
+  @media (max-width: 519px) {
+    .profile__facts {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .profile__facts > div {
+      padding-right: 0.5rem;
+    }
+    .profile__facts > div + div {
+      padding-left: 0.75rem;
+    }
+    .profile__facts dd {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Biography */
+  .bio {
+    color: var(--ink-700);
+  }
+  .bio .lead {
+    color: var(--ink-900);
+  }
+
+  /* Approach */
+  .approach__head {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  }
+  .approach__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--rule-strong);
+  }
+  .approach__item {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    padding: 2.25rem 2rem 0 0;
+  }
+  .approach__item + .approach__item {
+    padding-left: 2rem;
+    border-left: 1px solid var(--rule);
+  }
+  .approach__num {
+    font-size: 1.5rem;
+    color: var(--oxblood-600);
+  }
+  @media (max-width: 899px) {
+    .approach__list {
+      grid-template-columns: 1fr;
+    }
+    .approach__item,
+    .approach__item + .approach__item {
+      padding: 2rem 0;
+      border-left: 0;
+      border-bottom: 1px solid var(--rule);
+    }
+  }
+
+  /* Credentials */
+  .creds {
+    align-items: center;
+  }
+  .creds__figure {
+    grid-column: 1 / span 5;
+  }
+  .creds__frame {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+  .creds__frame :global(img) {
+    object-position: 50% 25%;
+  }
+  .creds__body {
+    grid-column: 7 / span 6;
+    display: grid;
+    gap: 1.5rem;
+  }
+  .creds__list {
+    border-top: 1px solid var(--rule-strong);
+  }
+  .creds__row {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.05rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .creds__row dt {
+    padding-top: 0.25rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--oxblood-700);
+  }
+  .creds__row dd {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+  .creds__marks {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .creds__seal {
+    width: 6.5rem;
+  }
+  .creds__aaml {
+    width: 9.5rem;
+    height: auto;
+    opacity: 0.85;
+  }
+  @media (max-width: 899px) {
+    .creds__figure,
+    .creds__body {
+      grid-column: 1 / -1;
+    }
+    .creds__figure {
+      max-width: 26rem;
+      margin-bottom: 3rem;
+    }
+    .creds__row {
+      grid-template-columns: 1fr;
+      gap: 0.35rem;
+    }
+  }
+
+  /* Teaching */
+  .talks {
+    border-top: 1px solid var(--rule-strong);
+  }
+  .talks__item {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.4rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .talks__year {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--oxblood-600);
+    font-feature-settings: 'lnum' 1;
+  }
+  .talks__title {
+    font-family: var(--serif);
+    font-size: clamp(1.2rem, 1.1rem + 0.4vw, 1.45rem);
+    line-height: 1.3;
+  }
+  .talks__venue {
+    margin-top: 0.35rem;
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+  .talks__link {
+    margin-top: 2rem;
+  }
+  @media (max-width: 519px) {
+    .talks__item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+  }
+</style>
