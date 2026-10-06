@@ -77,7 +77,8 @@ confirmation state. Nothing is sent.
 - **Photography:** all portraits are client-supplied, cropped and lightly tone-corrected. No
   location photograph is used. A photograph that is genuinely of downtown Lafayette can be
   added to the location band later.
-- **Domain:** `harrisaplc.com` is a placeholder, inferred from the office email domain.
+- **Domain:** canonical URLs use the demo deployment, `https://high-net-worth.vercel.app`.
+  Update `site` in `astro.config.mjs` once the client's own domain is confirmed.
 - **Copy:** biography and practice copy are drafted for the client's review. Nothing in them
   is presented as a quotation from Helen.
 - **Disclaimers:** the footer and form disclaimers should be reviewed against the Louisiana

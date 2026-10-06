@@ -59,12 +59,27 @@ if (root.classList.contains('motion-ready') && !root.classList.contains('motion-
   }
 
   // Section reveals: one trigger per element, batched for natural staggering.
+  // After a long jump, elements already scrolled past are shown at once and the
+  // stagger is capped, so on-screen content never waits behind off-screen items.
   gsap.set('[data-reveal]', { opacity: 0, y: 22 });
   ScrollTrigger.batch('[data-reveal]', {
     start: 'top 88%',
     once: true,
-    onEnter: (els) =>
-      gsap.to(els, { opacity: 1, y: 0, duration: 0.9, ease, stagger: 0.08, overwrite: true }),
+    onEnter: (els) => {
+      const passed = els.filter((el) => el.getBoundingClientRect().bottom <= 0);
+      const onScreen = els.filter((el) => el.getBoundingClientRect().bottom > 0);
+      if (passed.length) gsap.set(passed, { opacity: 1, y: 0, overwrite: true });
+      if (onScreen.length) {
+        gsap.to(onScreen, {
+          opacity: 1,
+          y: 0,
+          duration: 0.9,
+          ease,
+          stagger: Math.min(0.08, 0.6 / onScreen.length),
+          overwrite: true,
+        });
+      }
+    },
   });
 
   // Hairlines draw from the left.
@@ -98,5 +113,19 @@ if (root.classList.contains('motion-ready') && !root.classList.contains('motion-
   });
 
   // Fonts can shift layout slightly after load; recalculate trigger points.
-  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+  // A refresh can interrupt the browser's own scroll to a #fragment, so if a
+  // deep link has not reached its target, bring it into view once settled.
+  const settleFragment = () => {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const target = id ? document.getElementById(id) : null;
+    if (!target) return;
+    const top = target.getBoundingClientRect().top;
+    if (top < 0 || top > window.innerHeight * 0.5) {
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
+    }
+  };
+  document.fonts?.ready.then(() => {
+    ScrollTrigger.refresh();
+    settleFragment();
+  });
 }

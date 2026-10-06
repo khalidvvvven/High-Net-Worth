@@ -5,6 +5,7 @@
  * WordPress form handler (e.g. Gravity Forms) with the same field names.
  */
 import Icon from './Icon.astro';
+import { firm } from '../content/site';
 
 interface Props {
   id?: string;
@@ -46,7 +47,10 @@ const { id = 'inquiry' } = Astro.props;
 
   <div class="inquiry__done" data-inquiry-done hidden tabindex="-1">
     <p class="inquiry__done-title">Thank you.</p>
-    <p>Your inquiry has been noted. The office will contact you to arrange a time to talk.</p>
+    <p>
+      This site is a design preview, so your message has not been sent.
+      To reach the office, please call <a class="text-link" href={firm.phone.href}>{firm.phone.display}</a>.
+    </p>
   </div>
 
   <p class="inquiry__disclaimer" id={`${id}-disclaimer`}>

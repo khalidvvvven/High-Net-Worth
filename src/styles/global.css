@@ -139,6 +139,13 @@ html {
   scroll-padding-top: calc(var(--header-h) + 1rem);
 }
 
+/* Keep focused elements clear of the fixed mobile call bar (3.6rem + safe area). */
+@media (max-width: 899px) {
+  html {
+    scroll-padding-bottom: calc(3.6rem + env(safe-area-inset-bottom) + 1rem);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

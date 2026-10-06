@@ -90,5 +90,15 @@ import Icon from './Icon.astro';
     } else {
       bar.classList.add('is-visible');
     }
+
+    // Browsers skip scrolling for a partly visible focus target, so bring it
+    // clear of the bar explicitly; block 'nearest' honours scroll-padding-bottom.
+    document.addEventListener('focusin', (event) => {
+      const target = event.target as HTMLElement;
+      if (!bar.classList.contains('is-visible') || bar.contains(target)) return;
+      if (target.getBoundingClientRect().bottom > bar.getBoundingClientRect().top) {
+        target.scrollIntoView({ block: 'nearest' });
+      }
+    });
   }
 </script>

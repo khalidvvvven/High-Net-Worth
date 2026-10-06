@@ -2,9 +2,9 @@
 import { defineConfig } from 'astro/config';
 
 // Concept prototype for Helen Popich Harris, APLC.
-// `site` is a placeholder until the production domain is confirmed.
+// `site` is the temporary contest/demo deployment; no client domain is assumed.
 export default defineConfig({
-  site: 'https://www.harrisaplc.com',
+  site: 'https://high-net-worth.vercel.app',
   trailingSlash: 'ignore',
   build: {
     inlineStylesheets: 'auto',
